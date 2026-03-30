@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#FAFAF7">
+<meta name="description" content="Scratch Cafe - Pioneer Valley High School's student-run cafe. Everything made from scratch!">
+<title>Scratch Cafe | PVHS</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#5C3D2E;
+  --primary-dark:#3E2518;
+  --accent:#C8956C;
+  --accent-light:#F3E4D5;
+  --accent-warm:#FFF5EB;
+  --teal:#007474;
+  --teal-light:#E8F6F6;
+  --bg:#FAFAF7;
+  --bg-warm:#FFF8F0;
+  --surface:#FFFFFF;
+  --text:#2D2016;
+  --text-secondary:#6B5B4E;
+  --text-muted:#9C8B7E;
+  --border:rgba(92,61,46,0.08);
+  --border-strong:rgba(92,61,46,0.14);
+  --shadow-sm:0 2px 8px rgba(45,32,22,0.06);
+  --shadow-md:0 8px 24px rgba(45,32,22,0.08);
+  --shadow-lg:0 20px 60px rgba(45,32,22,0.12);
+  --radius:16px;
+  --radius-sm:10px;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+/* ========== HEADER / NAV ========== */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow 0.3s ease;
+}
+.site-header.scrolled{box-shadow:var(--shadow-sm)}
+.header-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:64px;
+}
+.header-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.header-logo{width:40px;height:40px;border-radius:10px;object-fit:contain}
+.header-name{
+  font-family:var(--font-display);font-size:20px;font-weight:700;
+  color:var(--primary);letter-spacing:-0.01em;
+}
+.header-nav{display:flex;align-items:center;gap:6px}
+.header-nav a{
+  padding:8px 16px;border-radius:8px;
+  font-size:13px;font-weight:600;color:var(--text-secondary);
+  text-decoration:none;transition:all 0.15s ease;
+  letter-spacing:0.02em;
+}
+.header-nav a:hover{background:var(--accent-light);color:var(--primary)}
+.header-nav a.active{background:var(--primary);color:#fff}
+.mobile-menu-btn{
+  display:none;width:40px;height:40px;border-radius:10px;border:none;
+  background:transparent;cursor:pointer;
+  align-items:center;justify-content:center;
+}
+.mobile-menu-btn svg{width:22px;height:22px;stroke:var(--primary);stroke-width:2;fill:none}
+.mobile-nav{
+  display:none;position:fixed;top:64px;left:0;right:0;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:12px 24px 16px;box-shadow:var(--shadow-md);
+}
+.mobile-nav.open{display:block}
+.mobile-nav a{
+  display:block;padding:12px 16px;border-radius:10px;
+  font-size:15px;font-weight:600;color:var(--text);
+  text-decoration:none;transition:background 0.13s ease;
+}
+.mobile-nav a:active{background:var(--accent-light)}
+
+@media(max-width:680px){
+  .header-nav{display:none}
+  .mobile-menu-btn{display:flex}
+}
+
+/* ========== HERO SLIDER ========== */
+.hero{
+  position:relative;width:100%;height:85vh;min-height:500px;max-height:720px;
+  overflow:hidden;margin-top:64px;
+}
+.hero-slider{
+  display:flex;width:300%;height:100%;
+  transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.hero-slide{
+  flex:0 0 33.333%;height:100%;position:relative;overflow:hidden;
+}
+.hero-slide img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(0.7);
+}
+.hero-slide-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:60px 40px 50px;
+  background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.55) 100%);
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+}
+.hero-tag{
+  font-size:11px;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:10px;
+}
+.hero-title{
+  font-family:var(--font-display);font-size:clamp(32px,6vw,56px);
+  font-weight:800;color:#fff;line-height:1.08;
+  margin-bottom:12px;
+}
+.hero-sub{
+  font-size:clamp(14px,2vw,17px);color:rgba(255,255,255,0.85);
+  font-weight:500;max-width:480px;line-height:1.5;
+  margin-bottom:24px;
+}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:10px;border:none;
+  font-family:var(--font);font-size:13px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s ease;text-decoration:none;
+}
+.btn-primary{
+  background:var(--primary);color:#fff;
+  box-shadow:0 4px 16px rgba(92,61,46,0.3);
+}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(92,61,46,0.35)}
+.btn-outline{
+  background:transparent;color:#fff;
+  border:2px solid rgba(255,255,255,0.6);
+}
+.btn-outline:hover{background:rgba(255,255,255,0.12);border-color:#fff}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(200,149,108,0.3)}
+.btn-accent:hover{background:#B8845C;transform:translateY(-1px)}
+
+/* Slider Controls */
+.hero-dots{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:10;
+}
+.hero-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:rgba(255,255,255,0.4);border:none;cursor:pointer;
+  transition:all 0.2s ease;
+}
+.hero-dot.active{background:#fff;transform:scale(1.2)}
+.hero-arrows{
+  position:absolute;top:50%;left:0;right:0;
+  display:flex;justify-content:space-between;
+  padding:0 16px;transform:translateY(-50%);z-index:10;
+}
+.hero-arrow{
+  width:44px;height:44px;border-radius:50%;border:none;
+  background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s ease;
+}
+.hero-arrow:hover{background:rgba(255,255,255,0.3)}
+.hero-arrow svg{width:20px;height:20px;stroke:#fff;stroke-width:2.5;fill:none}
+
+/* ========== SECTION CONTAINERS ========== */
+.section{padding:60px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:40px}
+.section-tag{
+  font-size:11px;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:8px;display:block;
+}
+.section-title{
+  font-family:var(--font-display);font-size:clamp(28px,4vw,42px);
+  font-weight:800;color:var(--primary);line-height:1.1;
+  margin-bottom:12px;
+}
+.section-desc{
+  font-size:15px;color:var(--text-secondary);
+  max-width:560px;margin:0 auto;line-height:1.6;
+}
+.section-warm{background:var(--bg-warm)}
+.section-accent{background:var(--accent-light)}
+
+/* ========== ABOUT STRIP ========== */
+.about-strip{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;
+  align-items:center;
+}
+.about-strip-img{
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-lg);
+}
+.about-strip-img img{width:100%;height:360px;object-fit:cover;display:block}
+.about-text h3{
+  font-family:var(--font-display);font-size:28px;font-weight:700;
+  color:var(--primary);margin-bottom:12px;
+}
+.about-text p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
+.about-text .highlight{
+  display:inline-block;background:var(--accent-light);
+  padding:8px 16px;border-radius:8px;
+  font-size:13px;font-weight:700;color:var(--primary);
+  border-left:3px solid var(--accent);
+}
+@media(max-width:680px){
+  .about-strip{grid-template-columns:1fr;gap:24px}
+  .about-strip-img img{height:240px}
+}
+
+/* ========== MENU PREVIEW CARDS ========== */
+.menu-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.menu-card{
+  background:var(--surface);border-radius:var(--radius);
+  overflow:hidden;border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  transition:all 0.25s ease;cursor:pointer;
+  text-decoration:none;color:inherit;display:block;
+}
+.menu-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+}
+.menu-card-img{
+  width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;
+}
+.menu-card-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.4s ease;
+}
+.menu-card:hover .menu-card-img img{transform:scale(1.06)}
+.menu-card-body{padding:18px 20px 22px}
+.menu-card-title{
+  font-family:var(--font-display);font-size:20px;font-weight:700;
+  color:var(--primary);margin-bottom:6px;
+}
+.menu-card-desc{font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:14px}
+.menu-card-cta{
+  font-size:11px;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--teal);
+  display:flex;align-items:center;gap:4px;
+}
+.menu-card-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+@media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.menu-grid{grid-template-columns:1fr}}
+
+/* ========== SPECIALS SLIDER ========== */
+.specials-track{
+  display:flex;gap:16px;overflow-x:auto;
+  padding:0 24px 16px;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.specials-track::-webkit-scrollbar{display:none}
+.special-card{
+  flex:0 0 280px;scroll-snap-align:start;
+  background:var(--surface);border-radius:var(--radius);
+  overflow:hidden;border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+}
+.special-card-img{
+  width:100%;height:180px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:60px;
+}
+.special-card-img img{width:100%;height:100%;object-fit:cover}
+.special-card-body{padding:14px 16px 18px}
+.special-card-name{font-size:16px;font-weight:700;color:var(--primary);margin-bottom:4px}
+.special-card-desc{font-size:12px;color:var(--text-secondary);line-height:1.5}
+.special-card-price{
+  display:inline-block;margin-top:8px;
+  font-size:14px;font-weight:800;color:var(--teal);
+}
+
+/* ========== FOOD IMAGE PLACEHOLDERS ========== */
+.food-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:48px;
+}
+.fp-coffee{background:linear-gradient(135deg,#F5E6D3 0%,#D4B896 100%)}
+.fp-breakfast{background:linear-gradient(135deg,#FFF3E0 0%,#FFD180 100%)}
+.fp-baked{background:linear-gradient(135deg,#FFF8E1 0%,#FFE082 100%)}
+.fp-smoothie{background:linear-gradient(135deg,#FCE4EC 0%,#F48FB1 100%)}
+.fp-chorizo{background:linear-gradient(135deg,#FBE9E7 0%,#FF8A65 100%)}
+.fp-cocoa{background:linear-gradient(135deg,#EFEBE9 0%,#A1887F 100%)}
+.fp-parfait{background:linear-gradient(135deg,#F3E5F5 0%,#CE93D8 100%)}
+.fp-oatmeal{background:linear-gradient(135deg,#FFF8E1 0%,#FFCC02 100%)}
+
+/* ========== HOURS BANNER ========== */
+.hours-banner{
+  background:var(--primary);color:#fff;
+  padding:40px 24px;text-align:center;
+}
+.hours-banner-inner{max-width:800px;margin:0 auto}
+.hours-banner h2{
+  font-family:var(--font-display);font-size:28px;font-weight:700;
+  margin-bottom:20px;
+}
+.hours-grid{
+  display:flex;justify-content:center;gap:32px;flex-wrap:wrap;
+}
+.hours-item{text-align:center}
+.hours-label{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.hours-time{font-size:15px;font-weight:600;color:rgba(255,255,255,0.9)}
+
+/* ========== BARISTA CTA BANNER ========== */
+.cta-banner{
+  position:relative;height:340px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.cta-banner-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#3E2518 0%,#5C3D2E 50%,#6B4226 100%);
+}
+.cta-banner-content{
+  position:relative;z-index:1;text-align:center;padding:40px 24px;
+}
+.cta-banner h2{
+  font-family:var(--font-display);font-size:clamp(24px,4vw,38px);
+  font-weight:800;color:#fff;margin-bottom:12px;
+}
+.cta-banner p{
+  font-size:15px;color:rgba(255,255,255,0.8);
+  max-width:480px;margin:0 auto 24px;line-height:1.6;
+}
+
+/* ========== FOOTER ========== */
+.site-footer{
+  background:var(--primary-dark);color:rgba(255,255,255,0.7);
+  padding:48px 24px 24px;
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+}
+.footer-brand{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px}
+.footer-brand img{width:48px;height:48px;border-radius:12px}
+.footer-brand-name{
+  font-family:var(--font-display);font-size:22px;font-weight:700;color:#fff;
+}
+.footer-desc{font-size:13px;line-height:1.6;margin-bottom:16px}
+.footer h4{
+  font-size:11px;font-weight:700;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px;
+}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:8px}
+.footer-links a{
+  color:rgba(255,255,255,0.7);text-decoration:none;
+  font-size:13px;font-weight:500;transition:color 0.13s ease;
+}
+.footer-links a:hover{color:#fff}
+.footer-bottom{
+  max-width:1100px;margin:32px auto 0;
+  padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;
+}
+.footer-bottom a{color:var(--accent);text-decoration:none;font-weight:600}
+@media(max-width:680px){
+  .footer-inner{grid-template-columns:1fr;gap:24px}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+}
+
+/* ========== ANIMATIONS ========== */
+.fade-up{
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand">
+      <img src="images/logo.png" class="header-logo" alt="Scratch Cafe">
+      <span class="header-name">Scratch Cafe</span>
+    </a>
+    <nav class="header-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="#about">About</a>
+      <a href="#hours">Hours</a>
+      <a href="https://creativesilva.github.io/pvhs_tools/" target="_blank" rel="noopener">PVHS Tools</a>
+    </nav>
+    <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="#about" onclick="toggleMobileNav()">About</a>
+    <a href="#hours" onclick="toggleMobileNav()">Hours</a>
+    <a href="https://creativesilva.github.io/pvhs_tools/" target="_blank">PVHS Tools</a>
+  </div>
+</header>
+
+<!-- HERO SLIDER -->
+<section class="hero">
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slide">
+      <img src="images/banner1.jpg" alt="Students at Scratch Cafe">
+      <div class="hero-slide-content">
+        <span class="hero-tag">Pioneer Valley High School</span>
+        <h1 class="hero-title">Scratch Cafe</h1>
+        <p class="hero-sub">Everything we serve is made from scratch. Student-crafted, panther-approved.</p>
+        <div class="hero-buttons">
+          <a href="menu.html" class="btn btn-primary">View Menu</a>
+          <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img src="images/banner2.jpg" alt="Food preparation at Scratch Cafe">
+      <div class="hero-slide-content">
+        <span class="hero-tag">Student Barista Program</span>
+        <h1 class="hero-title">Handcrafted Drinks</h1>
+        <p class="hero-sub">Lattes, chai, smoothies, and hot cocoa made by our talented student baristas.</p>
+        <div class="hero-buttons">
+          <a href="menu.html#beverages" class="btn btn-primary">See Beverages</a>
+          <a href="menu.html" class="btn btn-outline">Full Menu</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide">
+      <img src="images/graphic.png" alt="Scratch Cafe branding">
+      <div class="hero-slide-content">
+        <span class="hero-tag">Made Fresh Daily</span>
+        <h1 class="hero-title">Breakfast &amp; Baked Goods</h1>
+        <p class="hero-sub">Burritos, parfaits, muffins, and more. Start your school day right.</p>
+        <div class="hero-buttons">
+          <a href="menu.html#breakfast" class="btn btn-primary">Breakfast Menu</a>
+          <a href="menu.html#baked" class="btn btn-outline">Baked Goods</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-arrows">
+    <button class="hero-arrow" onclick="slideHero(-1)" aria-label="Previous">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-arrow" onclick="slideHero(1)" aria-label="Next">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </div>
+  <div class="hero-dots">
+    <button class="hero-dot active" onclick="goToSlide(0)"></button>
+    <button class="hero-dot" onclick="goToSlide(1)"></button>
+    <button class="hero-dot" onclick="goToSlide(2)"></button>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section section-warm" id="about">
+  <div class="section-inner">
+    <div class="about-strip fade-up">
+      <div class="about-strip-img">
+        <img src="images/cafe_photo.webp" alt="Scratch Cafe in action">
+      </div>
+      <div class="about-text">
+        <h3>We Are the Panthers.<br>Everything From Scratch.</h3>
+        <p>Scratch Cafe is an onsite culinary program at Pioneer Valley High School, run by Ms. Montanez. Our students learn real-world skills in food preparation, customer service, and business operations while serving the school community.</p>
+        <p>Our barista program trains students to craft professional espresso drinks, lattes, and specialty beverages. Every item on our menu is made fresh from scratch.</p>
+        <span class="highlight">Run by students. Made with pride.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU PREVIEW -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <span class="section-tag">Our Menu</span>
+      <h2 class="section-title">What We Serve</h2>
+      <p class="section-desc">From handcrafted espresso drinks to fresh breakfast burritos, everything is made from scratch by our students.</p>
+    </div>
+    <div class="menu-grid fade-up">
+      <a href="menu.html#beverages" class="menu-card">
+        <div class="menu-card-img">
+          <div class="food-placeholder fp-coffee">&#9749;</div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-title">Beverages</div>
+          <div class="menu-card-desc">Lattes, chai, smoothies, and hot cocoa handcrafted by our student baristas.</div>
+          <span class="menu-card-cta">View drinks <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+      <a href="menu.html#breakfast" class="menu-card">
+        <div class="menu-card-img">
+          <div class="food-placeholder fp-breakfast">&#127859;</div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-title">Breakfast</div>
+          <div class="menu-card-desc">Sausage burritos, chorizo bowls, parfaits, and hearty oatmeal to fuel your day.</div>
+          <span class="menu-card-cta">View breakfast <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+      <a href="menu.html#baked" class="menu-card">
+        <div class="menu-card-img">
+          <div class="food-placeholder fp-baked">&#127856;</div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-title">Baked Goods</div>
+          <div class="menu-card-desc">Fresh blueberry muffins and classic coffee cake with walnut crumble topping.</div>
+          <span class="menu-card-cta">View treats <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALS SLIDER -->
+<section class="section section-accent">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <span class="section-tag">Featured Items</span>
+      <h2 class="section-title">Today's Favorites</h2>
+    </div>
+  </div>
+  <div class="specials-track fade-up">
+    <div class="special-card">
+      <div class="special-card-img fp-coffee"><div class="food-placeholder">&#9749;</div></div>
+      <div class="special-card-body">
+        <div class="special-card-name">Latte</div>
+        <div class="special-card-desc">Double espresso with your choice of milk and flavor syrup. Served hot or iced.</div>
+        <span class="special-card-price">$3.00</span>
+      </div>
+    </div>
+    <div class="special-card">
+      <div class="special-card-img fp-smoothie"><div class="food-placeholder">&#127815;</div></div>
+      <div class="special-card-body">
+        <div class="special-card-name">Strawberry Banana Smoothie</div>
+        <div class="special-card-desc">Fresh strawberries and banana with apple juice. Add spinach for a boost!</div>
+        <span class="special-card-price">$3.00</span>
+      </div>
+    </div>
+    <div class="special-card">
+      <div class="special-card-img fp-breakfast"><div class="food-placeholder">&#127790;</div></div>
+      <div class="special-card-body">
+        <div class="special-card-name">Breakfast Burrito</div>
+        <div class="special-card-desc">Sausage, egg, three-cheese blend, and crispy hash browns in a flour tortilla.</div>
+        <span class="special-card-price"></span>
+      </div>
+    </div>
+    <div class="special-card">
+      <div class="special-card-img fp-chorizo"><div class="food-placeholder">&#127798;</div></div>
+      <div class="special-card-body">
+        <div class="special-card-name">Chorizo Burrito</div>
+        <div class="special-card-desc">Pork chorizo, egg, cheese with sauteed potato, bell pepper, and onion.</div>
+        <span class="special-card-price"></span>
+      </div>
+    </div>
+    <div class="special-card">
+      <div class="special-card-img fp-cocoa"><div class="food-placeholder">&#127849;</div></div>
+      <div class="special-card-body">
+        <div class="special-card-name">Toasted Marshmallow Hot Cocoa</div>
+        <div class="special-card-desc">Sweet and delicious. Also in Salted Caramel and Vanilla flavors.</div>
+        <span class="special-card-price"></span>
+      </div>
+    </div>
+    <div class="special-card">
+      <div class="special-card-img fp-baked"><div class="food-placeholder">&#129473;</div></div>
+      <div class="special-card-body">
+        <div class="special-card-name">Blueberry Muffin</div>
+        <div class="special-card-desc">Real blueberries with a sweet streusel topping. Baked fresh.</div>
+        <span class="special-card-price"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BARISTA CTA -->
+<section class="cta-banner">
+  <div class="cta-banner-bg"></div>
+  <div class="cta-banner-content fade-up">
+    <h2>Our Student Baristas<br>Are Ready to Serve</h2>
+    <p>Handcrafted espresso drinks made with care. Choose your milk, pick your flavor, and enjoy a latte for just $3.00.</p>
+    <a href="menu.html#beverages" class="btn btn-accent">Explore Beverages</a>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours-banner" id="hours">
+  <div class="hours-banner-inner fade-up">
+    <h2>When We're Open</h2>
+    <div class="hours-grid">
+      <div class="hours-item">
+        <div class="hours-label">Before School</div>
+        <div class="hours-time">Breakfast Service</div>
+      </div>
+      <div class="hours-item">
+        <div class="hours-label">Lunch Period</div>
+        <div class="hours-time">Full Menu Available</div>
+      </div>
+      <div class="hours-item">
+        <div class="hours-label">Schedule</div>
+        <div class="hours-time">Monday - Friday</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Scratch Cafe">
+        <span class="footer-brand-name">Scratch Cafe</span>
+      </div>
+      <p class="footer-desc">Pioneer Valley High School's student-run cafe. Everything we serve is made from scratch by our talented culinary students under the direction of Ms. Montanez.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Full Menu</a></li>
+        <li><a href="menu.html#beverages">Beverages</a></li>
+        <li><a href="menu.html#breakfast">Breakfast</a></li>
+        <li><a href="menu.html#baked">Baked Goods</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul class="footer-links">
+        <li><a href="https://creativesilva.github.io/pvhs_tools/" target="_blank">PVHS Tools</a></li>
+        <li><a href="#about">About the Program</a></li>
+        <li><a href="#hours">Hours</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Scratch Cafe &mdash; Pioneer Valley High School</span>
+    <span>Built by <a href="https://creativesilva.github.io/pvhs_tools/" target="_blank">CreativeSilva</a></span>
+  </div>
+</footer>
+
+<script>
+// ===== Hero Slider =====
+let currentSlide=0;const totalSlides=3;let autoSlideTimer;
+function updateSlider(){
+  document.getElementById('heroSlider').style.transform=`translateX(-${currentSlide*33.333}%)`;
+  document.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+}
+function slideHero(dir){
+  currentSlide=(currentSlide+dir+totalSlides)%totalSlides;
+  updateSlider();resetAutoSlide();
+}
+function goToSlide(i){currentSlide=i;updateSlider();resetAutoSlide();}
+function resetAutoSlide(){
+  clearInterval(autoSlideTimer);
+  autoSlideTimer=setInterval(()=>slideHero(1),5000);
+}
+resetAutoSlide();
+
+// Touch swipe support
+let touchStartX=0;
+document.querySelector('.hero').addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX},{passive:true});
+document.querySelector('.hero').addEventListener('touchend',e=>{
+  const diff=e.changedTouches[0].screenX-touchStartX;
+  if(Math.abs(diff)>50){diff>0?slideHero(-1):slideHero(1)}
+},{passive:true});
+
+// ===== Mobile Nav =====
+function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open')}
+
+// ===== Header scroll effect =====
+window.addEventListener('scroll',()=>{
+  document.getElementById('siteHeader').classList.toggle('scrolled',window.scrollY>20);
+},{passive:true});
+
+// ===== Scroll animations =====
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:0.15});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+// ===== Service Worker =====
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+</script>
+</body>
+</html>

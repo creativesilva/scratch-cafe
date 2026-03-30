@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:scratchcafepvhs.wixsite.com)",
+      "WebFetch(domain:webcache.googleusercontent.com)",
+      "WebSearch",
+      "WebFetch(domain:pvhspanthertales.org)",
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:www.wix.com)",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe)",
+      "Bash(grep -oE 'https?://[a-zA-Z0-9._/-]*wixstatic\\\\.com[a-zA-Z0-9._/~:@!$&\\(\\)*+,;=%-]*')",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe/about-our-menu)",
+      "Bash(grep -oE '[0-9a-f]{6}_[0-9a-f]{20,}\\(~mv2\\)?\\(_d_[0-9]+_[0-9]+_s_[0-9_]+\\)?\\\\.\\(jpg|png|webp|gif|jpeg\\)')",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe/gallery)",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe/contact)",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe/sitemap.xml)",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe/pages-sitemap.xml)",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe/menu)",
+      "Bash(for page:*)",
+      "Bash(do echo:*)",
+      "Bash(curl -s -L https://scratchcafepvhs.wixsite.com/scratchcafe$page)",
+      "Bash(grep -oE '[0-9a-f]{6}_[0-9a-f]{20,}\\(~mv2\\)?[a-zA-Z0-9_]*\\\\.\\(jpg|png|webp|gif|jpeg|svg\\)')",
+      "Bash(done)",
+      "Bash(mkdir -p \"/Users/riva/Scratch Cafe Website/images\")",
+      "Bash(curl -sL -o logo.png \"https://static.wixstatic.com/media/4284b5_230a3af420264092a643c95518360c0f~mv2.png\")",
+      "Bash(curl -sL -o banner1.jpg \"https://static.wixstatic.com/media/4284b5_86be40c85d634142816fc0744e1a351a~mv2.jpg\")",
+      "Bash(curl -sL -o banner2.jpg \"https://static.wixstatic.com/media/4284b5_a197b419fca746d7b9f14336980be96c~mv2.jpg\")",
+      "Bash(curl -sL -o graphic.png \"https://static.wixstatic.com/media/4284b5_1dc949645b2e4b6d9e128df4f159e585~mv2_d_5100_3092_s_4_2.png\")",
+      "Bash(gh auth:*)",
+      "Bash(git config:*)",
+      "Bash(brew install:*)"
+    ]
+  }
+}
