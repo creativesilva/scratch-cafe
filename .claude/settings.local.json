@@ -31,7 +31,19 @@
       "Bash(brew install:*)",
       "Read(//Users/riva/.ssh/**)",
       "Bash(ssh -T git@github.com)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"Accept: application/vnd.github.v3+json\" \"https://api.github.com/repos/creativesilva/scratch-cafe\")"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"Accept: application/vnd.github.v3+json\" \"https://api.github.com/repos/creativesilva/scratch-cafe\")",
+      "Read(//usr/local/bin/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/**)",
+      "Bash(ssh git@github.com)",
+      "Read(//Users/riva/**)",
+      "Bash(security find-internet-password:*)",
+      "Bash(find /Users/riva -maxdepth 2 -iname *scratch*logo* -o -iname *logo*new* -o -iname *cafe*logo*)",
+      "Bash(ls -la /Users/riva/*.png /Users/riva/*.jpg /Users/riva/*.PNG /Users/riva/*.JPG)",
+      "Bash(find /Users/riva/Desktop /Users/riva/Downloads /Users/riva/Documents /Users/riva/Pictures -maxdepth 2 -iname *scratch* -o -iname *cafe*logo* -o -iname *Logo*New*)",
+      "Bash(GH=/tmp/gh_install/gh_2.65.0_macOS_arm64/bin/gh)",
+      "Bash($GH auth:*)",
+      "Bash(find '/Users/riva/Library/Mobile Documents/com~apple~CloudDocs' -maxdepth 3 -iname *logo* -o -iname *scratch*)"
     ]
   }
 }
