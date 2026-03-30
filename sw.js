@@ -4,6 +4,7 @@ const ASSETS = [
   '/index.html',
   '/menu.html',
   '/support.html',
+  '/admin.html',
   '/manifest.webmanifest',
   '/images/logo.png',
   '/images/icon-192.png',

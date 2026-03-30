@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Portal — Scratch Cafe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#000000;--white:#FFFFFF;--teal:#007474;--teal-bright:#00A3A3;
+  --orange:#FF6B2B;--gray-50:#FAFAFA;--gray-100:#F5F5F5;--gray-200:#EEEEEE;
+  --gray-400:#BDBDBD;--gray-500:#9E9E9E;--gray-600:#757575;--gray-800:#424242;
+  --gray-900:#212121;--border:rgba(0,0,0,0.06);--border-strong:rgba(0,0,0,0.1);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--gray-50);color:var(--black);-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* ===== LOCK SCREEN ===== */
+#lockScreen{
+  position:fixed;inset:0;background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;
+}
+.lock-card{
+  background:var(--white);border-radius:4px;
+  padding:48px 40px;width:100%;max-width:400px;
+  text-align:center;
+}
+.lock-logo{width:64px;height:64px;object-fit:contain;margin:0 auto 24px;display:block}
+.lock-title{font-size:22px;font-weight:900;letter-spacing:-0.02em;margin-bottom:4px}
+.lock-sub{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500);margin-bottom:32px}
+.lock-divider{width:40px;height:2px;background:var(--orange);margin:0 auto 28px}
+#pwInput{
+  width:100%;padding:14px 16px;
+  border:1px solid var(--border-strong);border-radius:4px;
+  font-family:var(--font);font-size:15px;
+  outline:none;transition:border-color 0.15s ease;
+  margin-bottom:8px;
+}
+#pwInput:focus{border-color:var(--teal)}
+#pwInput.shake{animation:shake 0.3s ease}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-8px)}
+  40%{transform:translateX(8px)}
+  60%{transform:translateX(-6px)}
+  80%{transform:translateX(6px)}
+}
+.pw-error{
+  font-size:12px;font-weight:600;color:#D32F2F;
+  min-height:18px;margin-bottom:16px;
+}
+.lock-btn{
+  width:100%;padding:14px;border:none;border-radius:4px;
+  background:var(--teal);color:var(--white);
+  font-family:var(--font);font-size:12px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+  transition:background 0.15s ease;
+}
+.lock-btn:hover{background:var(--teal-bright)}
+
+/* ===== ADMIN HEADER ===== */
+.admin-header{
+  background:var(--black);padding:0 32px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.admin-brand{display:flex;align-items:center;gap:12px}
+.admin-logo{width:28px;height:28px;object-fit:contain;filter:brightness(0) invert(1)}
+.admin-name{font-size:13px;font-weight:700;color:var(--white);letter-spacing:0.08em;text-transform:uppercase}
+.admin-name span{color:var(--teal-bright)}
+.signout-btn{
+  padding:8px 18px;border:1px solid rgba(255,255,255,0.15);border-radius:4px;
+  background:none;color:rgba(255,255,255,0.6);
+  font-family:var(--font);font-size:11px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
+  transition:all 0.15s ease;
+}
+.signout-btn:hover{border-color:var(--white);color:var(--white)}
+
+/* ===== DASHBOARD ===== */
+#dashboard{display:none}
+.admin-main{max-width:640px;margin:0 auto;padding:48px 32px 80px}
+.admin-page-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.admin-page-title{font-size:28px;font-weight:900;letter-spacing:-0.02em;margin-bottom:8px}
+.admin-page-line{width:40px;height:2px;background:var(--orange);margin-bottom:32px}
+.admin-page-desc{font-size:14px;color:var(--gray-600);line-height:1.6;margin-bottom:40px}
+
+.field-group{
+  background:var(--white);border:1px solid var(--border-strong);
+  border-radius:4px;padding:28px 32px;margin-bottom:16px;
+}
+.field-label{
+  font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gray-600);margin-bottom:16px;
+}
+
+/* Status toggle */
+.status-toggle{display:flex;gap:0;border:1px solid var(--border-strong);border-radius:4px;overflow:hidden}
+.status-btn{
+  flex:1;padding:12px;border:none;background:var(--gray-100);
+  font-family:var(--font);font-size:12px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
+  transition:all 0.15s ease;color:var(--gray-600);
+}
+.status-btn.active-open{background:var(--teal);color:var(--white)}
+.status-btn.active-closed{background:#D32F2F;color:var(--white)}
+
+/* Checkboxes */
+.check-grid{display:flex;flex-wrap:wrap;gap:10px}
+.check-item{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px;border:1px solid var(--border-strong);border-radius:4px;
+  background:var(--gray-50);cursor:pointer;font-size:13px;font-weight:500;
+  transition:all 0.15s ease;user-select:none;
+}
+.check-item:hover{border-color:var(--teal);background:rgba(0,116,116,0.04)}
+.check-item input{width:16px;height:16px;accent-color:var(--teal);cursor:pointer}
+
+/* Text inputs */
+.admin-input{
+  width:100%;padding:12px 14px;
+  border:1px solid var(--border-strong);border-radius:4px;
+  font-family:var(--font);font-size:14px;
+  outline:none;transition:border-color 0.15s ease;
+  background:var(--white);
+}
+.admin-input:focus{border-color:var(--teal)}
+.admin-textarea{
+  width:100%;padding:12px 14px;min-height:80px;resize:vertical;
+  border:1px solid var(--border-strong);border-radius:4px;
+  font-family:var(--font);font-size:14px;line-height:1.5;
+  outline:none;transition:border-color 0.15s ease;
+  background:var(--white);
+}
+.admin-textarea:focus{border-color:var(--teal)}
+
+/* Save */
+.save-btn{
+  width:100%;padding:16px;border:none;border-radius:4px;
+  background:var(--teal);color:var(--white);
+  font-family:var(--font);font-size:12px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+  transition:all 0.15s ease;margin-top:24px;
+}
+.save-btn:hover{background:var(--teal-bright);transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,116,116,0.3)}
+
+.save-msg{
+  font-size:13px;font-weight:600;color:var(--teal);
+  text-align:center;margin-top:12px;
+  opacity:0;transition:opacity 0.3s ease;
+}
+.save-msg.show{opacity:1}
+.last-updated{
+  font-size:11px;color:var(--gray-500);text-align:center;
+  margin-top:8px;
+}
+
+/* Warning banner */
+.closed-banner{
+  background:#D32F2F;color:var(--white);
+  padding:12px 32px;font-size:12px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-align:center;display:none;
+}
+
+@media(max-width:600px){
+  .admin-main{padding:32px 16px 60px}
+  .field-group{padding:20px}
+  .lock-card{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-card">
+    <img src="images/logo.png" class="lock-logo" alt="Scratch Cafe">
+    <div class="lock-title">Admin Portal</div>
+    <div class="lock-sub">Scratch Cafe</div>
+    <div class="lock-divider"></div>
+    <input type="password" id="pwInput" placeholder="Enter password" autocomplete="current-password">
+    <div class="pw-error" id="pwError"></div>
+    <button class="lock-btn" onclick="checkPassword()">Sign In</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="closed-banner" id="closedBanner">Cafe is currently set to CLOSED — update below to reopen</div>
+  <header class="admin-header">
+    <div class="admin-brand">
+      <img src="images/logo-white.png" class="admin-logo" alt="">
+      <span class="admin-name">Scratch Cafe <span>/ Admin</span></span>
+    </div>
+    <button class="signout-btn" onclick="signOut()">Sign Out</button>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-page-label">Service Configuration</div>
+    <h1 class="admin-page-title">Service Schedule</h1>
+    <div class="admin-page-line"></div>
+    <p class="admin-page-desc">Update the service schedule below. Changes are saved locally and will be reflected on the public Scratch Cafe website immediately when visitors load the page.</p>
+
+    <!-- STATUS -->
+    <div class="field-group">
+      <div class="field-label">Cafe Status</div>
+      <div class="status-toggle">
+        <button class="status-btn" id="btnOpen" onclick="setStatus('open')">Open for Service</button>
+        <button class="status-btn" id="btnClosed" onclick="setStatus('closed')">Closed</button>
+      </div>
+    </div>
+
+    <!-- SERVICE DAYS -->
+    <div class="field-group">
+      <div class="field-label">Service Days</div>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox" class="days-check" value="Monday"> Monday</label>
+        <label class="check-item"><input type="checkbox" class="days-check" value="Tuesday"> Tuesday</label>
+        <label class="check-item"><input type="checkbox" class="days-check" value="Wednesday"> Wednesday</label>
+        <label class="check-item"><input type="checkbox" class="days-check" value="Thursday"> Thursday</label>
+        <label class="check-item"><input type="checkbox" class="days-check" value="Friday"> Friday</label>
+      </div>
+    </div>
+
+    <!-- DELIVERY PERIODS -->
+    <div class="field-group">
+      <div class="field-label">Delivery Periods</div>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox" class="periods-check" value="1st"> 1st Period</label>
+        <label class="check-item"><input type="checkbox" class="periods-check" value="2nd"> 2nd Period</label>
+        <label class="check-item"><input type="checkbox" class="periods-check" value="3rd"> 3rd Period</label>
+        <label class="check-item"><input type="checkbox" class="periods-check" value="4th"> 4th Period</label>
+      </div>
+    </div>
+
+    <!-- ORDER DEADLINE -->
+    <div class="field-group">
+      <div class="field-label">Order Deadline</div>
+      <input type="text" id="deadlineInput" class="admin-input" placeholder="e.g. Before 8:00 AM Same Day">
+    </div>
+
+    <!-- SPECIAL NOTICE -->
+    <div class="field-group">
+      <div class="field-label">Special Notice <span style="font-weight:500;text-transform:none;letter-spacing:0">(optional — leave blank to hide)</span></div>
+      <textarea id="noticeInput" class="admin-textarea" placeholder="e.g. No service this week — spring break. Orders resume Monday April 14."></textarea>
+    </div>
+
+    <button class="save-btn" onclick="saveChanges()">Save Changes</button>
+    <div class="save-msg" id="saveMsg">Changes saved successfully.</div>
+    <div class="last-updated" id="lastUpdated"></div>
+  </main>
+</div>
+
+<script>
+const PASSWORD = 'Scratch2025';
+
+function checkPassword() {
+  const pw = document.getElementById('pwInput').value;
+  if (pw === PASSWORD) {
+    sessionStorage.setItem('adminAuth', '1');
+    showDashboard();
+  } else {
+    document.getElementById('pwError').textContent = 'Incorrect password. Please try again.';
+    const inp = document.getElementById('pwInput');
+    inp.classList.add('shake');
+    inp.value = '';
+    setTimeout(() => inp.classList.remove('shake'), 400);
+  }
+}
+
+function showDashboard() {
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  loadSettings();
+}
+
+function signOut() {
+  sessionStorage.removeItem('adminAuth');
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('lockScreen').style.display = 'flex';
+  document.getElementById('pwInput').value = '';
+  document.getElementById('pwError').textContent = '';
+}
+
+let currentStatus = 'open';
+
+function setStatus(s) {
+  currentStatus = s;
+  document.getElementById('btnOpen').className = 'status-btn' + (s === 'open' ? ' active-open' : '');
+  document.getElementById('btnClosed').className = 'status-btn' + (s === 'closed' ? ' active-closed' : '');
+  document.getElementById('closedBanner').style.display = s === 'closed' ? 'block' : 'none';
+}
+
+function loadSettings() {
+  const saved = JSON.parse(localStorage.getItem('scratchHours') || '{}');
+
+  setStatus(saved.status || 'open');
+
+  const days = saved.days || ['Tuesday', 'Thursday'];
+  document.querySelectorAll('.days-check').forEach(cb => {
+    cb.checked = days.includes(cb.value);
+  });
+
+  const periods = saved.periods || ['1st', '2nd'];
+  document.querySelectorAll('.periods-check').forEach(cb => {
+    cb.checked = periods.includes(cb.value);
+  });
+
+  document.getElementById('deadlineInput').value = saved.deadline || 'Before 8:00 AM Same Day';
+  document.getElementById('noticeInput').value = saved.notice || '';
+
+  if (saved.updatedAt) {
+    document.getElementById('lastUpdated').textContent = 'Last saved: ' + new Date(saved.updatedAt).toLocaleString();
+  }
+}
+
+function saveChanges() {
+  const days = [...document.querySelectorAll('.days-check:checked')].map(cb => cb.value);
+  const periods = [...document.querySelectorAll('.periods-check:checked')].map(cb => cb.value);
+  const deadline = document.getElementById('deadlineInput').value.trim();
+  const notice = document.getElementById('noticeInput').value.trim();
+
+  const data = {
+    status: currentStatus,
+    days: days,
+    periods: periods,
+    deadline: deadline || 'Before 8:00 AM Same Day',
+    notice: notice,
+    updatedAt: new Date().toISOString()
+  };
+
+  localStorage.setItem('scratchHours', JSON.stringify(data));
+
+  const msg = document.getElementById('saveMsg');
+  msg.classList.add('show');
+  setTimeout(() => msg.classList.remove('show'), 3000);
+
+  document.getElementById('lastUpdated').textContent = 'Last saved: ' + new Date().toLocaleString();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('adminAuth') === '1') {
+    showDashboard();
+  }
+  document.getElementById('pwInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
+</body>
+</html>

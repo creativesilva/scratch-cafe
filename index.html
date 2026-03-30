@@ -522,21 +522,23 @@ body{
     <div>
       <div class="hours-label">Service Schedule</div>
       <div class="hours-title">Operating Hours</div>
+      <div id="hoursClosedBadge" style="display:none;margin-top:10px;display:none;padding:6px 14px;background:#D32F2F;color:#fff;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;border-radius:3px;width:fit-content">Currently Closed</div>
     </div>
-    <div class="hours-items">
+    <div class="hours-items" id="hoursItems">
       <div>
         <div class="hours-item-label">Service Days</div>
-        <div class="hours-item-time">Tuesday &mdash; Thursday</div>
+        <div class="hours-item-time" id="hoursDays">Tuesday &mdash; Thursday</div>
       </div>
       <div>
         <div class="hours-item-label">Delivery Window</div>
-        <div class="hours-item-time">1st &amp; 2nd Period Only</div>
+        <div class="hours-item-time" id="hoursPeriods">1st &amp; 2nd Period Only</div>
       </div>
       <div>
         <div class="hours-item-label">Order Deadline</div>
-        <div class="hours-item-time">Before 8:00 AM Same Day</div>
+        <div class="hours-item-time" id="hoursDeadline">Before 8:00 AM Same Day</div>
       </div>
     </div>
+    <div id="hoursNotice" style="display:none;margin-top:16px;width:100%;padding:12px 16px;background:rgba(255,107,43,0.15);border-left:3px solid var(--orange);font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.5"></div>
     <div style="margin-top:24px;font-size:12px;color:rgba(255,255,255,0.4);text-align:center;width:100%;line-height:1.6">Hours are subject to change. Contact Ms. Montanez for the latest schedule.</div>
   </div>
 </section>
@@ -731,6 +733,32 @@ const cartData=JSON.parse(localStorage.getItem('scratchCafeCart')||'[]');
 const cartCount=cartData.reduce((s,i)=>s+i.qty,0);
 const badge=document.getElementById('cartBadge');
 if(badge){badge.textContent=cartCount;badge.classList.toggle('has-items',cartCount>0);}
+
+// Load hours from admin settings
+(function(){
+  const h=JSON.parse(localStorage.getItem('scratchHours')||'{}');
+  if(!h.updatedAt)return;
+  if(h.days&&h.days.length){
+    const el=document.getElementById('hoursDays');
+    if(el)el.textContent=h.days.length===1?h.days[0]:h.days.join(', ');
+  }
+  if(h.periods&&h.periods.length){
+    const el=document.getElementById('hoursPeriods');
+    if(el)el.textContent=h.periods.map(p=>p+' Period').join(' & ')+' Only';
+  }
+  if(h.deadline){
+    const el=document.getElementById('hoursDeadline');
+    if(el)el.textContent=h.deadline;
+  }
+  if(h.status==='closed'){
+    const b=document.getElementById('hoursClosedBadge');
+    if(b)b.style.display='block';
+  }
+  if(h.notice){
+    const el=document.getElementById('hoursNotice');
+    if(el){el.textContent=h.notice;el.style.display='block';}
+  }
+})();
 </script>
 </body>
 </html>
