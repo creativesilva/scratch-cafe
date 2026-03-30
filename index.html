@@ -55,20 +55,20 @@ body{
 /* ===== HEADER ===== */
 .site-header{
   position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(255,255,255,0.96);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  transition:border-color 0.3s ease;
-  border-bottom:1px solid transparent;
+  background:rgba(255,255,255,0.68);
+  backdrop-filter:blur(40px) saturate(2);-webkit-backdrop-filter:blur(40px) saturate(2);
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  box-shadow:0 1px 0 rgba(0,0,0,0.06),inset 0 1px 0 rgba(255,255,255,0.8);
+  transition:all 0.3s ease;
 }
-.site-header.scrolled{border-bottom-color:var(--border-strong)}
+.site-header.scrolled{border-bottom-color:rgba(0,116,116,0.12);box-shadow:0 4px 32px rgba(0,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.8)}
 .header-inner{
   max-width:1200px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
   padding:0 32px;height:72px;
 }
-.header-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-.header-logo{width:36px;height:36px;border-radius:8px;object-fit:contain}
-.header-name{font-size:15px;font-weight:700;color:var(--black);letter-spacing:0.08em;text-transform:uppercase}
+.header-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.header-logo{width:52px;height:52px;object-fit:contain}
 .header-nav{display:flex;align-items:center;gap:2px}
 .header-nav a{
   padding:8px 18px;border-radius:6px;
@@ -225,13 +225,12 @@ body{
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .menu-section-wrap{position:relative;overflow:visible}
 .parallax-logo-home{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:500px;height:500px;pointer-events:none;z-index:0;
-  opacity:0.12;display:none;
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:580px;height:580px;pointer-events:none;z-index:0;
+  opacity:0.10;
 }
-.parallax-logo-home.visible{display:block}
 .parallax-logo-home img{width:100%;height:100%;object-fit:contain}
-@media(max-width:768px){.parallax-logo-home{width:300px;height:300px}}
+@media(max-width:768px){.parallax-logo-home{width:320px;height:320px}}
 .menu-grid{position:relative;z-index:2}
 .menu-card{
   background:rgba(255,255,255,0.75);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);
@@ -375,11 +374,11 @@ body{
 .ghost-logo img{width:100%;height:100%;object-fit:contain}
 .ghost-logo-hero{top:50%;right:-60px;transform:translateY(-50%);width:400px;height:400px}
 .ghost-logo-about{top:50%;left:-80px;transform:translateY(-50%);width:360px;height:360px}
-.ghost-logo-cta{top:50%;right:-40px;transform:translateY(-50%);width:320px;height:320px}
+.ghost-logo-cta{top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);width:700px;height:700px;opacity:0.15}
 @media(max-width:768px){
   .ghost-logo-hero{width:240px;height:240px;right:-40px}
   .ghost-logo-about{width:200px;height:200px;left:-40px}
-  .ghost-logo-cta{width:180px;height:180px;right:-20px}
+  .ghost-logo-cta{width:420px;height:420px}
 }
 
 /* ===== ANIMATIONS ===== */
@@ -392,15 +391,11 @@ body{
 </head>
 <body>
 
-<!-- PARALLAX LOGO -->
-<div class="parallax-logo-home" id="parallaxLogoHome"><img src="images/logo-teal.png" alt=""></div>
-
 <!-- HEADER -->
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
     <a href="index.html" class="header-brand">
       <img src="images/logo.png" class="header-logo" alt="Scratch Cafe">
-      <span class="header-name">Scratch Cafe</span>
     </a>
     <nav class="header-nav">
       <a href="index.html" class="active">Home</a>
@@ -553,6 +548,7 @@ body{
       <p class="section-desc">Three core categories. Every item made from scratch. Professional execution, consistent quality.</p>
     </div>
     <div class="menu-section-wrap" id="menuWrap">
+    <div class="parallax-logo-home"><img src="images/logo-teal.png" alt=""></div>
     <div class="menu-grid">
       <a href="menu.html#beverages" class="menu-card reveal reveal-delay-1">
         <div class="menu-card-img">
@@ -651,7 +647,7 @@ body{
 
 <!-- CTA BANNER -->
 <section class="cta-banner" style="position:relative;overflow:hidden">
-  <div class="ghost-logo ghost-logo-cta"><img src="images/logo.png" alt=""></div>
+  <div class="ghost-logo ghost-logo-cta"><img src="images/logo-black.png" alt=""></div>
   <div class="cta-inner reveal">
     <h2>A Program Producing<br>Industry-Ready Talent</h2>
     <p>Scratch Cafe trains the next generation of culinary and hospitality professionals through real-world kitchen operations and barista certification skills.</p>
@@ -666,7 +662,6 @@ body{
     <div>
       <div class="footer-brand">
         <img src="images/logo-white.png" alt="Scratch Cafe">
-        <span class="footer-brand-name">Scratch Cafe</span>
       </div>
       <p class="footer-desc">Pioneer Valley High School's professional culinary program. Directed by Ms. Montanez. Every item made from scratch, every skill built from the ground up.</p>
     </div>
@@ -716,17 +711,6 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
-
-// Parallax: show fixed logo only when menu section is visible
-const pLogo=document.getElementById('parallaxLogoHome');
-const menuWrap=document.getElementById('menuWrap');
-function checkParallax(){
-  if(!menuWrap||!pLogo)return;
-  const r=menuWrap.getBoundingClientRect();
-  pLogo.classList.toggle('visible',r.top<window.innerHeight&&r.bottom>0);
-}
-window.addEventListener('scroll',checkParallax,{passive:true});
-checkParallax();
 
 // Cart badge from localStorage
 const cartData=JSON.parse(localStorage.getItem('scratchCafeCart')||'[]');
