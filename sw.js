@@ -1,10 +1,13 @@
-const CACHE_NAME = 'scratch-cafe-v1';
+const CACHE_NAME = 'scratch-cafe-v2';
 const ASSETS = [
   '/',
   '/index.html',
   '/menu.html',
+  '/support.html',
   '/manifest.webmanifest',
   '/images/logo.png',
+  '/images/icon-192.png',
+  '/images/icon-512.png',
   '/images/banner1.jpg',
   '/images/banner2.jpg',
   '/images/graphic.png',
