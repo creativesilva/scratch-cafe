@@ -43,7 +43,8 @@
       "Bash(find /Users/riva/Desktop /Users/riva/Downloads /Users/riva/Documents /Users/riva/Pictures -maxdepth 2 -iname *scratch* -o -iname *cafe*logo* -o -iname *Logo*New*)",
       "Bash(GH=/tmp/gh_install/gh_2.65.0_macOS_arm64/bin/gh)",
       "Bash($GH auth:*)",
-      "Bash(find '/Users/riva/Library/Mobile Documents/com~apple~CloudDocs' -maxdepth 3 -iname *logo* -o -iname *scratch*)"
+      "Bash(find '/Users/riva/Library/Mobile Documents/com~apple~CloudDocs' -maxdepth 3 -iname *logo* -o -iname *scratch*)",
+      "Bash($GH repo:*)"
     ]
   }
 }

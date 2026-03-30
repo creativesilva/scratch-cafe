@@ -91,6 +91,20 @@ body{
   text-transform:uppercase;border-bottom:1px solid var(--border);
 }
 .mobile-nav a:last-child{border:none}
+.cart-toggle{
+  position:relative;width:40px;height:40px;border:none;background:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  margin-left:8px;
+}
+.cart-toggle svg{width:22px;height:22px;stroke:var(--black);stroke-width:2;fill:none}
+.cart-badge{
+  position:absolute;top:2px;right:2px;
+  min-width:16px;height:16px;border-radius:8px;
+  background:var(--orange);color:var(--white);
+  font-size:9px;font-weight:800;
+  display:none;align-items:center;justify-content:center;padding:0 4px;
+}
+.cart-badge.has-items{display:flex}
 @media(max-width:768px){.header-nav{display:none}.mobile-toggle{display:flex}}
 
 /* ===== HERO ===== */
@@ -359,9 +373,15 @@ body{
       <a href="#hours">Hours</a>
       <a href="https://creativesilva.github.io/pvhs_tools/" target="_blank" rel="noopener">PVHS Tools</a>
     </nav>
-    <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div style="display:flex;align-items:center;gap:4px">
+      <a class="cart-toggle" href="menu.html" aria-label="View Cart" onclick="return true;">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html">Home</a>
@@ -650,6 +670,12 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+
+// Cart badge from localStorage
+const cartData=JSON.parse(localStorage.getItem('scratchCafeCart')||'[]');
+const cartCount=cartData.reduce((s,i)=>s+i.qty,0);
+const badge=document.getElementById('cartBadge');
+if(badge){badge.textContent=cartCount;badge.classList.toggle('has-items',cartCount>0);}
 </script>
 </body>
 </html>
