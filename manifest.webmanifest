@@ -4,8 +4,8 @@
   "description": "Pioneer Valley High School's student-run cafe. Everything made from scratch!",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAFAF7",
-  "theme_color": "#5C3D2E",
+  "background_color": "#000000",
+  "theme_color": "#007474",
   "orientation": "any",
   "icons": [
     {

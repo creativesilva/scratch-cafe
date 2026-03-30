@@ -28,7 +28,10 @@
       "Bash(curl -sL -o graphic.png \"https://static.wixstatic.com/media/4284b5_1dc949645b2e4b6d9e128df4f159e585~mv2_d_5100_3092_s_4_2.png\")",
       "Bash(gh auth:*)",
       "Bash(git config:*)",
-      "Bash(brew install:*)"
+      "Bash(brew install:*)",
+      "Read(//Users/riva/.ssh/**)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" -H \"Accept: application/vnd.github.v3+json\" \"https://api.github.com/repos/creativesilva/scratch-cafe\")"
     ]
   }
 }

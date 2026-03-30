@@ -4,257 +4,227 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#FAFAF7">
-<meta name="description" content="Scratch Cafe Menu - Baked goods, breakfast, and beverages made from scratch at PVHS.">
-<title>Menu | Scratch Cafe</title>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Scratch Cafe Menu — Professional culinary output from PVHS's from-scratch kitchen program.">
+<title>Menu — Scratch Cafe</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --primary:#5C3D2E;
-  --primary-dark:#3E2518;
-  --accent:#C8956C;
-  --accent-light:#F3E4D5;
-  --accent-warm:#FFF5EB;
+  --black:#000000;
+  --white:#FFFFFF;
   --teal:#007474;
-  --teal-light:#E8F6F6;
-  --bg:#FAFAF7;
-  --bg-warm:#FFF8F0;
-  --surface:#FFFFFF;
-  --text:#2D2016;
-  --text-secondary:#6B5B4E;
-  --text-muted:#9C8B7E;
-  --border:rgba(92,61,46,0.08);
-  --border-strong:rgba(92,61,46,0.14);
-  --shadow-sm:0 2px 8px rgba(45,32,22,0.06);
-  --shadow-md:0 8px 24px rgba(45,32,22,0.08);
-  --shadow-lg:0 20px 60px rgba(45,32,22,0.12);
-  --radius:16px;
-  --radius-sm:10px;
-  --font-display:'Playfair Display',Georgia,serif;
+  --teal-bright:#00A3A3;
+  --teal-subtle:rgba(0,116,116,0.06);
+  --orange:#FF6B2B;
+  --orange-subtle:rgba(255,107,43,0.08);
+  --gray-50:#FAFAFA;
+  --gray-100:#F5F5F5;
+  --gray-200:#EEEEEE;
+  --gray-300:#E0E0E0;
+  --gray-400:#BDBDBD;
+  --gray-500:#9E9E9E;
+  --gray-600:#757575;
+  --gray-700:#616161;
+  --gray-800:#424242;
+  --gray-900:#212121;
+  --border:rgba(0,0,0,0.06);
+  --border-strong:rgba(0,0,0,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.12);
   --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  font-family:var(--font);background:var(--bg);color:var(--text);
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  overflow-x:hidden;
+  font-family:var(--font);background:var(--white);color:var(--black);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
 }
 
-/* ========== HEADER ========== */
+/* ===== HEADER ===== */
 .site-header{
   position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  transition:box-shadow 0.3s ease;
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid transparent;transition:border-color 0.3s ease;
 }
-.site-header.scrolled{box-shadow:var(--shadow-sm)}
+.site-header.scrolled{border-bottom-color:var(--border-strong)}
 .header-inner{
-  max-width:1100px;margin:0 auto;
+  max-width:1200px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;height:64px;
+  padding:0 32px;height:72px;
 }
-.header-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.header-logo{width:40px;height:40px;border-radius:10px;object-fit:contain}
-.header-name{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--primary)}
-.header-nav{display:flex;align-items:center;gap:6px}
+.header-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.header-logo{width:36px;height:36px;border-radius:8px;object-fit:contain}
+.header-name{font-size:15px;font-weight:700;color:var(--black);letter-spacing:0.08em;text-transform:uppercase}
+.header-nav{display:flex;align-items:center;gap:2px}
 .header-nav a{
-  padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;
-  color:var(--text-secondary);text-decoration:none;transition:all 0.15s ease;
+  padding:8px 18px;border-radius:6px;font-size:12px;font-weight:600;
+  color:var(--gray-600);text-decoration:none;transition:all 0.15s ease;
+  letter-spacing:0.06em;text-transform:uppercase;
 }
-.header-nav a:hover{background:var(--accent-light);color:var(--primary)}
-.header-nav a.active{background:var(--primary);color:#fff}
-.mobile-menu-btn{
-  display:none;width:40px;height:40px;border-radius:10px;border:none;
-  background:transparent;cursor:pointer;align-items:center;justify-content:center;
+.header-nav a:hover{color:var(--black);background:var(--gray-100)}
+.header-nav a.active{color:var(--white);background:var(--teal)}
+.mobile-toggle{
+  display:none;width:40px;height:40px;border:none;background:none;
+  cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;
 }
-.mobile-menu-btn svg{width:22px;height:22px;stroke:var(--primary);stroke-width:2;fill:none}
+.mobile-toggle span{display:block;width:20px;height:1.5px;background:var(--black);transition:all 0.2s ease}
 .mobile-nav{
-  display:none;position:fixed;top:64px;left:0;right:0;
-  background:var(--surface);border-bottom:1px solid var(--border);
-  padding:12px 24px 16px;box-shadow:var(--shadow-md);
+  display:none;position:fixed;top:72px;left:0;right:0;
+  background:var(--white);border-bottom:1px solid var(--border-strong);padding:8px 32px 16px;
 }
 .mobile-nav.open{display:block}
 .mobile-nav a{
-  display:block;padding:12px 16px;border-radius:10px;
-  font-size:15px;font-weight:600;color:var(--text);text-decoration:none;
+  display:block;padding:14px 0;font-size:13px;font-weight:600;
+  color:var(--black);text-decoration:none;letter-spacing:0.06em;
+  text-transform:uppercase;border-bottom:1px solid var(--border);
 }
-.mobile-nav a:active{background:var(--accent-light)}
-@media(max-width:680px){.header-nav{display:none}.mobile-menu-btn{display:flex}}
+.mobile-nav a:last-child{border:none}
+@media(max-width:768px){.header-nav{display:none}.mobile-toggle{display:flex}}
 
-/* ========== PAGE HERO ========== */
+/* ===== PAGE HERO ===== */
 .page-hero{
-  position:relative;margin-top:64px;height:300px;overflow:hidden;
-  display:flex;align-items:flex-end;
+  position:relative;margin-top:72px;height:320px;overflow:hidden;
+  background:var(--black);display:flex;align-items:flex-end;
 }
-.page-hero-bg{
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,#5C3D2E 0%,#8B6914 50%,#C8956C 100%);
-}
-.page-hero-img{position:absolute;inset:0;opacity:0.2}
-.page-hero-img img{width:100%;height:100%;object-fit:cover}
+.page-hero-img{position:absolute;inset:0}
+.page-hero-img img{width:100%;height:100%;object-fit:cover;opacity:0.3}
 .page-hero-content{
-  position:relative;z-index:1;
-  max-width:1100px;width:100%;margin:0 auto;
-  padding:40px 24px;
+  position:relative;z-index:1;max-width:1200px;width:100%;
+  margin:0 auto;padding:48px 32px;
 }
 .page-hero-back{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);
-  text-decoration:none;margin-bottom:12px;transition:color 0.13s ease;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:16px;
+  transition:color 0.15s ease;
 }
-.page-hero-back:hover{color:#fff}
-.page-hero-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.page-hero-back:hover{color:var(--white)}
+.page-hero-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
 .page-hero h1{
-  font-family:var(--font-display);font-size:clamp(32px,5vw,48px);
-  font-weight:800;color:#fff;margin-bottom:8px;
+  font-size:clamp(36px,6vw,56px);font-weight:900;color:var(--white);
+  letter-spacing:-0.03em;line-height:0.95;margin-bottom:12px;
 }
-.page-hero p{font-size:15px;color:rgba(255,255,255,0.8);max-width:480px}
+.page-hero-line{width:40px;height:2px;background:var(--orange);margin-bottom:14px}
+.page-hero p{font-size:15px;color:rgba(255,255,255,0.55);max-width:440px;line-height:1.6}
 
-/* ========== CATEGORY TABS ========== */
+/* ===== TABS ===== */
 .tabs-bar{
-  position:sticky;top:64px;z-index:100;
-  background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
+  position:sticky;top:72px;z-index:100;
+  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-strong);
 }
 .tabs-inner{
-  max-width:1100px;margin:0 auto;padding:0 24px;
-  display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
+  max-width:1200px;margin:0 auto;padding:0 32px;
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
 }
 .tabs-inner::-webkit-scrollbar{display:none}
 .tab-btn{
-  padding:14px 20px;border:none;background:none;
-  font-family:var(--font);font-size:13px;font-weight:700;
-  color:var(--text-muted);cursor:pointer;white-space:nowrap;
-  border-bottom:3px solid transparent;
-  transition:all 0.15s ease;letter-spacing:0.04em;
+  padding:18px 24px;border:none;background:none;
+  font-family:var(--font);font-size:11px;font-weight:700;
+  color:var(--gray-500);cursor:pointer;white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:all 0.15s ease;letter-spacing:0.1em;text-transform:uppercase;
 }
-.tab-btn:hover{color:var(--primary)}
-.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-btn:hover{color:var(--black)}
+.tab-btn.active{color:var(--teal);border-bottom-color:var(--teal)}
 
-/* ========== MENU CONTENT ========== */
-.menu-section{padding:40px 24px 60px}
-.menu-section-inner{max-width:1100px;margin:0 auto}
+/* ===== MENU CONTENT ===== */
+.menu-body{padding:48px 32px 80px}
+.menu-body-inner{max-width:1200px;margin:0 auto}
 
-.menu-cat{margin-bottom:48px;display:none}
+.menu-cat{margin-bottom:64px;display:none}
 .menu-cat.visible{display:block}
 
 .menu-cat-header{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:24px;padding-bottom:14px;
-  border-bottom:2px solid var(--border);
+  display:flex;align-items:baseline;gap:16px;
+  margin-bottom:32px;padding-bottom:16px;
+  border-bottom:1px solid var(--border-strong);
 }
-.menu-cat-icon{font-size:28px}
-.menu-cat-title{
-  font-family:var(--font-display);font-size:28px;font-weight:700;
-  color:var(--primary);
-}
+.menu-cat-title{font-size:32px;font-weight:900;color:var(--black);letter-spacing:-0.02em}
 .menu-cat-count{
-  font-size:11px;font-weight:700;color:var(--text-muted);
-  background:var(--accent-light);padding:4px 10px;border-radius:12px;
-  letter-spacing:0.06em;
+  font-size:10px;font-weight:700;color:var(--gray-500);
+  letter-spacing:0.1em;text-transform:uppercase;
 }
 
-/* Item Cards - Grid */
-.items-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:600px){.items-grid{grid-template-columns:1fr}}
+/* Item Grid */
+.items-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.items-grid{grid-template-columns:1fr}}
 
 .item-card{
-  background:var(--surface);border-radius:var(--radius);
-  overflow:hidden;border:1px solid var(--border);
-  box-shadow:var(--shadow-sm);transition:all 0.25s ease;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:4px;overflow:hidden;transition:all 0.3s ease;
 }
-.item-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.item-card:hover{border-color:var(--border-strong);box-shadow:var(--shadow-md);transform:translateY(-4px)}
 .item-card-img{
-  width:100%;height:160px;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
+  width:100%;height:180px;background:var(--gray-100);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
-.item-card-img img{width:100%;height:100%;object-fit:cover}
-.item-card-body{padding:16px 18px 20px}
-.item-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
-.item-card-name{
-  font-family:var(--font-display);font-size:18px;font-weight:700;
-  color:var(--primary);line-height:1.2;
+.item-card-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%);transition:transform 0.4s ease}
+.item-card:hover .item-card-img img{transform:scale(1.04)}
+.item-card-img .ph{
+  font-size:10px;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gray-400);
 }
-.item-card-price{
-  font-size:15px;font-weight:800;color:var(--teal);
-  white-space:nowrap;margin-left:8px;
-}
-.item-card-desc{font-size:13px;color:var(--text-secondary);line-height:1.55}
-.item-card-tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.item-card-body{padding:24px}
+.item-card-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}
+.item-card-name{font-size:18px;font-weight:800;color:var(--black);letter-spacing:-0.01em;line-height:1.2}
+.item-card-price{font-size:15px;font-weight:800;color:var(--teal);white-space:nowrap}
+.item-card-desc{font-size:13px;color:var(--gray-600);line-height:1.65}
+.item-card-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 .item-tag{
-  font-size:9px;font-weight:700;letter-spacing:0.08em;
-  text-transform:uppercase;padding:4px 10px;border-radius:6px;
+  font-size:9px;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;padding:4px 10px;border-radius:3px;
 }
-.tag-popular{background:var(--teal-light);color:var(--teal)}
-.tag-new{background:#FFF3E0;color:#E65100}
-.tag-custom{background:var(--accent-light);color:var(--primary)}
-.tag-fav{background:#FCE4EC;color:#C62828}
+.tag-signature{background:var(--teal-subtle);color:var(--teal)}
+.tag-customizable{background:var(--orange-subtle);color:var(--orange)}
+.tag-new{background:var(--gray-100);color:var(--gray-700)}
+.tag-highlight{background:var(--black);color:var(--white)}
 
-/* Note box */
+/* Note */
 .menu-note{
-  background:var(--teal-light);border-radius:var(--radius-sm);
-  padding:14px 18px;margin-top:16px;
-  border:1px solid rgba(0,116,116,0.1);
-  display:flex;align-items:flex-start;gap:10px;
+  margin-top:20px;padding:16px 20px;
+  background:var(--gray-50);border-left:2px solid var(--teal);
+  display:flex;align-items:flex-start;gap:12px;
 }
-.menu-note svg{width:18px;height:18px;flex-shrink:0;color:var(--teal);margin-top:1px;stroke:currentColor;fill:none;stroke-width:2}
-.menu-note p{font-size:13px;color:var(--teal);font-weight:500;line-height:1.5}
+.menu-note svg{width:16px;height:16px;flex-shrink:0;color:var(--teal);margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.menu-note p{font-size:12px;color:var(--gray-600);line-height:1.6;font-weight:500}
 
-/* Food placeholders */
-.food-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:52px}
-.ph-latte{background:linear-gradient(135deg,#F5E6D3 0%,#D4B896 100%)}
-.ph-chai{background:linear-gradient(135deg,#FFF3E0 0%,#FFCC80 100%)}
-.ph-smoothie{background:linear-gradient(135deg,#FCE4EC 0%,#F48FB1 100%)}
-.ph-cocoa{background:linear-gradient(135deg,#EFEBE9 0%,#A1887F 100%)}
-.ph-burrito{background:linear-gradient(135deg,#FFF8E1 0%,#FFE082 100%)}
-.ph-chorizo{background:linear-gradient(135deg,#FBE9E7 0%,#FF8A65 100%)}
-.ph-parfait{background:linear-gradient(135deg,#F3E5F5 0%,#CE93D8 100%)}
-.ph-oatmeal{background:linear-gradient(135deg,#FFF8E1 0%,#FFCC02 100%)}
-.ph-muffin{background:linear-gradient(135deg,#EDE7F6 0%,#B39DDB 100%)}
-.ph-cake{background:linear-gradient(135deg,#FFF3E0 0%,#FFAB91 100%)}
-
-/* ========== FOOTER ========== */
-.site-footer{
-  background:var(--primary-dark);color:rgba(255,255,255,0.7);
-  padding:48px 24px 24px;
-}
+/* ===== FOOTER ===== */
+.site-footer{background:var(--gray-900);padding:56px 32px 24px}
 .footer-inner{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;
 }
-.footer-brand{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px}
-.footer-brand img{width:48px;height:48px;border-radius:12px}
-.footer-brand-name{font-family:var(--font-display);font-size:22px;font-weight:700;color:#fff}
-.footer-desc{font-size:13px;line-height:1.6;margin-bottom:16px}
-.footer h4{
-  font-size:11px;font-weight:700;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:14px;
-}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.footer-brand img{width:32px;height:32px;border-radius:6px}
+.footer-brand-name{font-size:13px;font-weight:700;color:var(--white);letter-spacing:0.08em;text-transform:uppercase}
+.footer-desc{font-size:13px;color:var(--gray-500);line-height:1.7}
+.footer h4{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px}
 .footer-links{list-style:none}
-.footer-links li{margin-bottom:8px}
-.footer-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.13s ease}
-.footer-links a:hover{color:#fff}
+.footer-links li{margin-bottom:10px}
+.footer-links a{color:var(--gray-500);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.15s ease}
+.footer-links a:hover{color:var(--white)}
 .footer-bottom{
-  max-width:1100px;margin:32px auto 0;padding-top:20px;
-  border-top:1px solid rgba(255,255,255,0.08);
-  display:flex;justify-content:space-between;align-items:center;font-size:11px;
+  max-width:1200px;margin:40px auto 0;padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--gray-600);
 }
-.footer-bottom a{color:var(--accent);text-decoration:none;font-weight:600}
-@media(max-width:680px){
-  .footer-inner{grid-template-columns:1fr;gap:24px}
+.footer-bottom a{color:var(--teal-bright);text-decoration:none;font-weight:600}
+@media(max-width:768px){
+  .footer-inner{grid-template-columns:1fr;gap:32px}
   .footer-bottom{flex-direction:column;gap:8px;text-align:center}
 }
 
 /* Animations */
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -273,8 +243,8 @@ body{
       <a href="index.html#hours">Hours</a>
       <a href="https://creativesilva.github.io/pvhs_tools/" target="_blank" rel="noopener">PVHS Tools</a>
     </nav>
-    <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">
-      <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-nav" id="mobileNav">
@@ -288,19 +258,19 @@ body{
 
 <!-- PAGE HERO -->
 <section class="page-hero">
-  <div class="page-hero-bg"></div>
   <div class="page-hero-img"><img src="images/banner2.jpg" alt=""></div>
   <div class="page-hero-content">
     <a href="index.html" class="page-hero-back">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      Back to Home
+      Home
     </a>
-    <h1>Our Menu</h1>
-    <p>Everything made from scratch, with love. Handcrafted by our culinary students.</p>
+    <h1>The Menu</h1>
+    <div class="page-hero-line"></div>
+    <p>Professional kitchen output. Every item made from scratch. Consistent quality, every service.</p>
   </div>
 </section>
 
-<!-- CATEGORY TABS -->
+<!-- TABS -->
 <div class="tabs-bar">
   <div class="tabs-inner">
     <button class="tab-btn active" onclick="showCat('all',this)">All Items</button>
@@ -311,160 +281,157 @@ body{
 </div>
 
 <!-- MENU CONTENT -->
-<div class="menu-section">
-  <div class="menu-section-inner">
+<div class="menu-body">
+  <div class="menu-body-inner">
 
     <!-- BEVERAGES -->
     <div class="menu-cat visible" data-cat="beverages" id="beverages">
       <div class="menu-cat-header">
-        <span class="menu-cat-icon">&#9749;</span>
         <span class="menu-cat-title">Beverages</span>
-        <span class="menu-cat-count">4 items</span>
+        <span class="menu-cat-count">4 Items / Barista Program</span>
       </div>
       <div class="items-grid">
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-latte">&#9749;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Espresso Program</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Latte</span>
               <span class="item-card-price">$3.00</span>
             </div>
-            <div class="item-card-desc">Double shot of espresso with whole milk and 1 oz. of syrup. Choose from whole, 1%, almond, or oat milk. Can be served iced. Flavors include Hazelnut and Vanilla.</div>
+            <div class="item-card-desc">Double shot of espresso with whole milk and 1 oz. flavor syrup. Milk options: whole, 1%, almond, or oat. Served hot or iced. Flavors: Hazelnut, Vanilla.</div>
             <div class="item-card-tags">
-              <span class="item-tag tag-popular">Popular</span>
-              <span class="item-tag tag-custom">Customizable</span>
+              <span class="item-tag tag-signature">Signature</span>
+              <span class="item-tag tag-customizable">Customizable</span>
             </div>
           </div>
         </div>
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-chai">&#127861;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Tea Program</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Chai Latte</span>
               <span class="item-card-price">$3.00</span>
             </div>
-            <div class="item-card-desc">Black tea spiced with cinnamon, cardamom, and pepper with steamed milk and vanilla syrup. Available with whole, 1%, almond, or oat milk. Can be served iced.</div>
+            <div class="item-card-desc">Black tea spiced with cinnamon, cardamom, and pepper. Steamed milk with vanilla syrup. Available with whole, 1%, almond, or oat milk. Hot or iced.</div>
             <div class="item-card-tags">
-              <span class="item-tag tag-popular">Popular</span>
+              <span class="item-tag tag-signature">Signature</span>
             </div>
           </div>
         </div>
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-smoothie">&#127815;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Blended Program</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Strawberry Banana Smoothie</span>
               <span class="item-card-price">$3.00</span>
             </div>
-            <div class="item-card-desc">Made with fresh strawberries, banana, and a splash of apple juice. Add spinach for a nutrient boost!</div>
+            <div class="item-card-desc">Fresh strawberries, banana, and apple juice. Spinach nutrient addition available on request. 16 oz. serving.</div>
             <div class="item-card-tags">
-              <span class="item-tag tag-custom">Customizable</span>
+              <span class="item-tag tag-customizable">Customizable</span>
             </div>
           </div>
         </div>
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-cocoa">&#127849;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Specialty</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Toasted Marshmallow Hot Cocoa</span>
             </div>
-            <div class="item-card-desc">Sweet and delicious hot cocoa. Also available in Salted Caramel and Vanilla flavors. A student barista fan favorite!</div>
+            <div class="item-card-desc">Signature hot cocoa crafted by our barista team. Also available in Salted Caramel and Vanilla variations.</div>
             <div class="item-card-tags">
-              <span class="item-tag tag-fav">Fan Favorite</span>
+              <span class="item-tag tag-highlight">Staff Favorite</span>
             </div>
           </div>
         </div>
       </div>
       <div class="menu-note">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <p>All espresso drinks are 16 oz. and handcrafted by our student baristas. Latte flavors include Hazelnut and Vanilla. Creamer options: Regular, Hazelnut, and Vanilla.</p>
+        <p>All espresso drinks are 16 oz. and handcrafted through our barista training program. Creamer options include Regular, Hazelnut, and Vanilla.</p>
       </div>
     </div>
 
     <!-- BREAKFAST -->
     <div class="menu-cat visible" data-cat="breakfast" id="breakfast">
       <div class="menu-cat-header">
-        <span class="menu-cat-icon">&#127859;</span>
         <span class="menu-cat-title">Breakfast</span>
-        <span class="menu-cat-count">4 items</span>
+        <span class="menu-cat-count">4 Items / Kitchen Production</span>
       </div>
       <div class="items-grid">
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-burrito">&#127790;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Kitchen Line</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
-              <span class="item-card-name">Breakfast Burrito (Sausage)</span>
+              <span class="item-card-name">Sausage Breakfast Burrito</span>
             </div>
-            <div class="item-card-desc">Sausage, egg, a three-cheese blend with crispy hash browns wrapped in a warm flour tortilla.</div>
+            <div class="item-card-desc">Sausage, egg, three-cheese blend with crispy hash browns. Wrapped in a warm flour tortilla.</div>
             <div class="item-card-tags">
-              <span class="item-tag tag-popular">Popular</span>
+              <span class="item-tag tag-signature">Signature</span>
             </div>
           </div>
         </div>
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-chorizo">&#127798;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Kitchen Line</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Chorizo Burrito</span>
             </div>
-            <div class="item-card-desc">Pork chorizo, egg, three-cheese blend with sauteed potato, bell pepper, and onion wrapped in a flour tortilla.</div>
+            <div class="item-card-desc">Pork chorizo, egg, three-cheese blend with sauteed potato, bell pepper, and onion. Flour tortilla or served as a bowl.</div>
             <div class="item-card-tags">
-              <span class="item-tag tag-new">New</span>
+              <span class="item-tag tag-new">New Addition</span>
             </div>
           </div>
         </div>
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-parfait">&#127815;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Prep Station</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Parfait</span>
             </div>
-            <div class="item-card-desc">Lemon yogurt with fresh seasonal fruits (strawberries and bananas) and homemade crunchy granola served on the side.</div>
+            <div class="item-card-desc">Lemon yogurt layered with fresh seasonal fruits. Homemade crunchy granola served on the side.</div>
           </div>
         </div>
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-oatmeal">&#127858;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Prep Station</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Oatmeal</span>
             </div>
-            <div class="item-card-desc">Old-fashioned oats with almond milk, strawberries, blueberries, and cinnamon. Topped with fresh banana, crunchy granola, and brown sugar.</div>
+            <div class="item-card-desc">Old-fashioned oats with almond milk, strawberries, blueberries, cinnamon, and maple syrup. Topped with fresh banana, granola, and brown sugar.</div>
           </div>
         </div>
       </div>
       <div class="menu-note">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <p>Any burrito can be served in a bowl without the tortilla. Just ask!</p>
+        <p>Any burrito can be prepared as a bowl without the tortilla upon request.</p>
       </div>
     </div>
 
     <!-- BAKED GOODS -->
     <div class="menu-cat visible" data-cat="baked" id="baked">
       <div class="menu-cat-header">
-        <span class="menu-cat-icon">&#127856;</span>
         <span class="menu-cat-title">Baked Goods</span>
-        <span class="menu-cat-count">2 items</span>
+        <span class="menu-cat-count">2 Items / Baking Station</span>
       </div>
       <div class="items-grid">
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-muffin">&#129473;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Baking Station</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Blueberry Muffin</span>
             </div>
-            <div class="item-card-desc">Perfectly sized muffins made with real blueberries and topped with a sweet streusel topping. Baked fresh daily.</div>
+            <div class="item-card-desc">Made with real blueberries and topped with a sweet streusel crumble. Baked in-house each service day.</div>
             <div class="item-card-tags">
-              <span class="item-tag tag-popular">Popular</span>
+              <span class="item-tag tag-signature">Signature</span>
             </div>
           </div>
         </div>
-        <div class="item-card fade-up">
-          <div class="item-card-img"><div class="food-ph ph-cake">&#127856;</div></div>
+        <div class="item-card reveal">
+          <div class="item-card-img"><span class="ph">Baking Station</span></div>
           <div class="item-card-body">
             <div class="item-card-top">
               <span class="item-card-name">Coffee Cake</span>
             </div>
-            <div class="item-card-desc">A thick slice of classic cake with a walnut crumble topping. The perfect treat to pair with your latte!</div>
+            <div class="item-card-desc">Classic cake with walnut crumble topping. An ideal pairing with any of our espresso beverages.</div>
           </div>
         </div>
       </div>
@@ -481,10 +448,10 @@ body{
         <img src="images/logo.png" alt="Scratch Cafe">
         <span class="footer-brand-name">Scratch Cafe</span>
       </div>
-      <p class="footer-desc">Pioneer Valley High School's student-run cafe. Everything we serve is made from scratch by our talented culinary students under the direction of Ms. Montanez.</p>
+      <p class="footer-desc">Pioneer Valley High School's professional culinary program. Directed by Ms. Montanez. Every item made from scratch, every skill built from the ground up.</p>
     </div>
     <div>
-      <h4>Quick Links</h4>
+      <h4>Navigation</h4>
       <ul class="footer-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="menu.html">Full Menu</a></li>
@@ -497,65 +464,48 @@ body{
       <h4>Resources</h4>
       <ul class="footer-links">
         <li><a href="https://creativesilva.github.io/pvhs_tools/" target="_blank">PVHS Tools</a></li>
-        <li><a href="index.html#about">About the Program</a></li>
-        <li><a href="index.html#hours">Hours</a></li>
+        <li><a href="index.html#about">Program Overview</a></li>
+        <li><a href="index.html#hours">Service Hours</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 Scratch Cafe &mdash; Pioneer Valley High School</span>
+    <span>2026 Scratch Cafe &mdash; Pioneer Valley High School</span>
     <span>Built by <a href="https://creativesilva.github.io/pvhs_tools/" target="_blank">CreativeSilva</a></span>
   </div>
 </footer>
 
 <script>
-// Mobile Nav
 function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open')}
+window.addEventListener('scroll',()=>{document.getElementById('siteHeader').classList.toggle('scrolled',window.scrollY>20)},{passive:true});
 
-// Header scroll
-window.addEventListener('scroll',()=>{
-  document.getElementById('siteHeader').classList.toggle('scrolled',window.scrollY>20);
-},{passive:true});
-
-// Category tabs
 function showCat(cat,btn){
   document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.menu-cat').forEach(c=>{
-    if(cat==='all'||c.dataset.cat===cat){c.classList.add('visible')}
-    else{c.classList.remove('visible')}
+    c.classList.toggle('visible',cat==='all'||c.dataset.cat===cat);
   });
 }
 
-// Hash navigation
 function handleHash(){
   const hash=window.location.hash.replace('#','');
-  const validCats=['beverages','breakfast','baked'];
-  if(validCats.includes(hash)){
-    document.querySelectorAll('.menu-cat').forEach(c=>{
-      c.classList.toggle('visible',c.dataset.cat===hash);
-    });
+  const valid=['beverages','breakfast','baked'];
+  if(valid.includes(hash)){
+    document.querySelectorAll('.menu-cat').forEach(c=>c.classList.toggle('visible',c.dataset.cat===hash));
     document.querySelectorAll('.tab-btn').forEach(t=>{
       t.classList.remove('active');
-      const text=t.textContent.toLowerCase();
-      if(text.includes(hash.substring(0,4)))t.classList.add('active');
+      if(t.textContent.toLowerCase().includes(hash.substring(0,4)))t.classList.add('active');
     });
-    setTimeout(()=>{
-      document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'});
-    },200);
+    setTimeout(()=>document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'}),200);
   }
 }
 if(window.location.hash)handleHash();
 window.addEventListener('hashchange',handleHash);
 
-// Scroll animations
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
-},{threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// Service Worker
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 </script>
 </body>
 </html>
