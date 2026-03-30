@@ -234,14 +234,16 @@ body{
 @media(max-width:768px){.parallax-logo-home{width:320px;height:320px}}
 .menu-grid{position:relative;z-index:2}
 .menu-card{
-  background:rgba(255,255,255,0.75);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);
+  background:rgba(255,255,255,0.38);backdrop-filter:blur(28px) saturate(1.8);-webkit-backdrop-filter:blur(28px) saturate(1.8);
   border-radius:4px;overflow:hidden;
-  border:1px solid rgba(255,255,255,0.5);transition:all 0.3s ease;
+  border:1px solid rgba(255,255,255,0.85);
+  box-shadow:0 2px 24px rgba(0,116,116,0.07),inset 0 1px 0 rgba(255,255,255,0.9);
+  transition:all 0.3s ease;
   text-decoration:none;color:inherit;display:block;
   position:relative;
 }
 .menu-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-.menu-card-img{width:100%;aspect-ratio:16/10;overflow:hidden;background:var(--gray-100);position:relative}
+.menu-card-img{width:100%;aspect-ratio:16/10;overflow:hidden;background:rgba(0,116,116,0.06);position:relative}
 .menu-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;filter:grayscale(10%)}
 .menu-card:hover .menu-card-img img{transform:scale(1.05)}
 .menu-card-img .placeholder{
@@ -552,7 +554,7 @@ body{
     <div class="menu-grid">
       <a href="menu.html#beverages" class="menu-card reveal reveal-delay-1">
         <div class="menu-card-img">
-          <div class="placeholder" style="background:var(--gray-200)">Espresso &middot; Latte &middot; Chai</div>
+          <div class="placeholder" style="background:rgba(0,116,116,0.05)">Espresso &middot; Latte &middot; Chai</div>
         </div>
         <div class="menu-card-body">
           <div class="menu-card-label">Barista Program</div>
@@ -563,7 +565,7 @@ body{
       </a>
       <a href="menu.html#breakfast" class="menu-card reveal reveal-delay-2">
         <div class="menu-card-img">
-          <div class="placeholder" style="background:var(--gray-200)">Burritos &middot; Parfaits &middot; Oatmeal</div>
+          <div class="placeholder" style="background:rgba(0,116,116,0.05)">Burritos &middot; Parfaits &middot; Oatmeal</div>
         </div>
         <div class="menu-card-body">
           <div class="menu-card-label">Kitchen Production</div>
@@ -574,7 +576,7 @@ body{
       </a>
       <a href="menu.html#baked" class="menu-card reveal reveal-delay-3">
         <div class="menu-card-img">
-          <div class="placeholder" style="background:var(--gray-200)">Muffins &middot; Coffee Cake</div>
+          <div class="placeholder" style="background:rgba(0,116,116,0.05)">Muffins &middot; Coffee Cake</div>
         </div>
         <div class="menu-card-body">
           <div class="menu-card-label">Baking Program</div>
@@ -750,7 +752,7 @@ if(badge){badge.textContent=cartCount;badge.classList.toggle('has-items',cartCou
   logo.className='parallax-logo-home';
   logo.innerHTML='<img src="images/logo-teal.png" alt="">';
   document.body.appendChild(logo);
-  const section=document.getElementById('menuWrap');
+  const section=document.getElementById('menuWrap').closest('section');
   if(!section)return;
   new IntersectionObserver(function(entries){
     logo.classList.toggle('visible',entries[0].isIntersecting);
