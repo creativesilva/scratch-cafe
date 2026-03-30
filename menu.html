@@ -11,398 +11,205 @@
 <link rel="apple-touch-icon" sizes="152x152" href="images/icon-152.png">
 <link rel="apple-touch-icon" sizes="192x192" href="images/icon-192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="images/icon-96.png">
-<meta name="description" content="Scratch Cafe Menu — Professional culinary output from PVHS's from-scratch kitchen program.">
+<meta name="description" content="Scratch Cafe Menu — Full menu with customization options. Order for delivery.">
 <title>Menu — Scratch Cafe</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="images/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --black:#000000;
-  --white:#FFFFFF;
-  --teal:#007474;
-  --teal-bright:#00A3A3;
-  --teal-subtle:rgba(0,116,116,0.06);
-  --orange:#FF6B2B;
-  --orange-subtle:rgba(255,107,43,0.08);
-  --gray-50:#FAFAFA;
-  --gray-100:#F5F5F5;
-  --gray-200:#EEEEEE;
-  --gray-300:#E0E0E0;
-  --gray-400:#BDBDBD;
-  --gray-500:#9E9E9E;
-  --gray-600:#757575;
-  --gray-700:#616161;
-  --gray-800:#424242;
-  --gray-900:#212121;
-  --border:rgba(0,0,0,0.06);
-  --border-strong:rgba(0,0,0,0.1);
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md:0 4px 20px rgba(0,0,0,0.08);
+  --black:#000;--white:#FFF;--teal:#007474;--teal-bright:#00A3A3;
+  --teal-subtle:rgba(0,116,116,0.06);--orange:#FF6B2B;--orange-subtle:rgba(255,107,43,0.08);
+  --gray-50:#FAFAFA;--gray-100:#F5F5F5;--gray-200:#EEE;--gray-300:#E0E0E0;
+  --gray-400:#BDBDBD;--gray-500:#9E9E9E;--gray-600:#757575;--gray-700:#616161;
+  --gray-800:#424242;--gray-900:#212121;
+  --border:rgba(0,0,0,0.06);--border-strong:rgba(0,0,0,0.1);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 20px rgba(0,0,0,0.08);
   --shadow-lg:0 12px 40px rgba(0,0,0,0.12);
   --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--font);background:var(--white);color:var(--black);
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
-}
+body{font-family:var(--font);background:var(--white);color:var(--black);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
 
-/* ===== HEADER ===== */
-.site-header{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  background:rgba(255,255,255,0.96);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid transparent;transition:border-color 0.3s ease;
-}
+/* HEADER */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid transparent;transition:border-color 0.3s ease}
 .site-header.scrolled{border-bottom-color:var(--border-strong)}
-.header-inner{
-  max-width:1200px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;height:72px;
-}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:72px}
 .header-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
 .header-logo{width:36px;height:36px;border-radius:8px;object-fit:contain}
 .header-name{font-size:15px;font-weight:700;color:var(--black);letter-spacing:0.08em;text-transform:uppercase}
 .header-nav{display:flex;align-items:center;gap:2px}
-.header-nav a{
-  padding:8px 18px;border-radius:6px;font-size:12px;font-weight:600;
-  color:var(--gray-600);text-decoration:none;transition:all 0.15s ease;
-  letter-spacing:0.06em;text-transform:uppercase;
-}
+.header-nav a{padding:8px 18px;border-radius:6px;font-size:12px;font-weight:600;color:var(--gray-600);text-decoration:none;transition:all 0.15s ease;letter-spacing:0.06em;text-transform:uppercase}
 .header-nav a:hover{color:var(--black);background:var(--gray-100)}
 .header-nav a.active{color:var(--white);background:var(--teal)}
-.mobile-toggle{
-  display:none;width:40px;height:40px;border:none;background:none;
-  cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;
-}
-.mobile-toggle span{display:block;width:20px;height:1.5px;background:var(--black);transition:all 0.2s ease}
-.mobile-nav{
-  display:none;position:fixed;top:72px;left:0;right:0;
-  background:var(--white);border-bottom:1px solid var(--border-strong);padding:8px 32px 16px;
-}
+.cart-toggle{position:relative;width:40px;height:40px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:8px}
+.cart-toggle svg{width:22px;height:22px;stroke:var(--black);stroke-width:2;fill:none}
+.cart-badge{position:absolute;top:2px;right:2px;min-width:16px;height:16px;border-radius:8px;background:var(--orange);color:var(--white);font-size:9px;font-weight:800;display:none;align-items:center;justify-content:center;padding:0 4px}
+.cart-badge.has-items{display:flex}
+.mobile-toggle{display:none;width:40px;height:40px;border:none;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.mobile-toggle span{display:block;width:20px;height:1.5px;background:var(--black)}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border-strong);padding:8px 32px 16px}
 .mobile-nav.open{display:block}
-.mobile-nav a{
-  display:block;padding:14px 0;font-size:13px;font-weight:600;
-  color:var(--black);text-decoration:none;letter-spacing:0.06em;
-  text-transform:uppercase;border-bottom:1px solid var(--border);
-}
+.mobile-nav a{display:block;padding:14px 0;font-size:13px;font-weight:600;color:var(--black);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;border-bottom:1px solid var(--border)}
 .mobile-nav a:last-child{border:none}
 @media(max-width:768px){.header-nav{display:none}.mobile-toggle{display:flex}}
 
-/* ===== PAGE HERO ===== */
-.page-hero{
-  position:relative;margin-top:72px;height:320px;overflow:hidden;
-  background:var(--black);display:flex;align-items:flex-end;
-}
+/* PAGE HERO */
+.page-hero{position:relative;margin-top:72px;height:320px;overflow:hidden;background:var(--black);display:flex;align-items:flex-end}
 .page-hero-img{position:absolute;inset:0}
 .page-hero-img img{width:100%;height:100%;object-fit:cover;opacity:0.3}
-.page-hero-content{
-  position:relative;z-index:1;max-width:1200px;width:100%;
-  margin:0 auto;padding:48px 32px;
-}
-.page-hero-back{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
-  color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:16px;
-  transition:color 0.15s ease;
-}
+.page-hero-content{position:relative;z-index:1;max-width:1200px;width:100%;margin:0 auto;padding:48px 32px}
+.page-hero-back{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;margin-bottom:16px}
 .page-hero-back:hover{color:var(--white)}
 .page-hero-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
-.page-hero h1{
-  font-size:clamp(36px,6vw,56px);font-weight:900;color:var(--white);
-  letter-spacing:-0.03em;line-height:0.95;margin-bottom:12px;
-}
+.page-hero h1{font-size:clamp(36px,6vw,56px);font-weight:900;color:var(--white);letter-spacing:-0.03em;line-height:0.95;margin-bottom:12px}
 .page-hero-line{width:40px;height:2px;background:var(--orange);margin-bottom:14px}
 .page-hero p{font-size:15px;color:rgba(255,255,255,0.55);max-width:440px;line-height:1.6}
 
-/* ===== TABS ===== */
-.tabs-bar{
-  position:sticky;top:72px;z-index:100;
-  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border-strong);
-}
-.tabs-inner{
-  max-width:1200px;margin:0 auto;padding:0 32px;
-  display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
-}
+/* TABS */
+.tabs-bar{position:sticky;top:72px;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-strong)}
+.tabs-inner{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
 .tabs-inner::-webkit-scrollbar{display:none}
-.tab-btn{
-  padding:18px 24px;border:none;background:none;
-  font-family:var(--font);font-size:11px;font-weight:700;
-  color:var(--gray-500);cursor:pointer;white-space:nowrap;
-  border-bottom:2px solid transparent;
-  transition:all 0.15s ease;letter-spacing:0.1em;text-transform:uppercase;
-}
+.tab-btn{padding:18px 24px;border:none;background:none;font-family:var(--font);font-size:11px;font-weight:700;color:var(--gray-500);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.15s ease;letter-spacing:0.1em;text-transform:uppercase}
 .tab-btn:hover{color:var(--black)}
 .tab-btn.active{color:var(--teal);border-bottom-color:var(--teal)}
 
-/* ===== MENU CONTENT ===== */
-.menu-body{padding:48px 32px 80px;background:var(--gray-50)}
-.menu-body-inner{max-width:1200px;margin:0 auto}
+/* MENU BODY */
+.menu-body{padding:48px 32px 80px;background:var(--gray-50);position:relative;overflow:hidden}
+.menu-body-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.ghost-logo{position:absolute;pointer-events:none;z-index:0;width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.045}
+.ghost-logo img{width:100%;height:100%;object-fit:contain}
+@media(max-width:768px){.ghost-logo{width:350px;height:350px}}
 
-.menu-cat{margin-bottom:64px;display:none}
+.menu-cat{margin-bottom:48px;display:none}
 .menu-cat.visible{display:block}
+.menu-cat-header{display:flex;align-items:baseline;gap:16px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border-strong)}
+.menu-cat-title{font-size:28px;font-weight:900;color:var(--black);letter-spacing:-0.02em}
+.menu-cat-count{font-size:10px;font-weight:700;color:var(--gray-500);letter-spacing:0.1em;text-transform:uppercase}
 
-.menu-cat-header{
-  display:flex;align-items:baseline;gap:16px;
-  margin-bottom:32px;padding-bottom:16px;
-  border-bottom:1px solid var(--border-strong);
-}
-.menu-cat-title{font-size:32px;font-weight:900;color:var(--black);letter-spacing:-0.02em}
-.menu-cat-count{
-  font-size:10px;font-weight:700;color:var(--gray-500);
-  letter-spacing:0.1em;text-transform:uppercase;
-}
-
-/* Item Grid */
-.items-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:640px){.items-grid{grid-template-columns:1fr}}
-
-.item-card{
-  background:var(--white);border:1px solid var(--border);
-  border-radius:4px;overflow:hidden;transition:all 0.3s ease;
-}
-.item-card:hover{border-color:var(--border-strong);box-shadow:var(--shadow-md);transform:translateY(-4px)}
-.item-card-img{
-  width:100%;height:180px;background:var(--gray-100);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
-.item-card-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(10%);transition:transform 0.4s ease}
-.item-card:hover .item-card-img img{transform:scale(1.04)}
-.item-card-img .ph{
-  font-size:10px;font-weight:700;letter-spacing:0.2em;
-  text-transform:uppercase;color:var(--gray-400);
-}
-.item-card-body{padding:24px}
-.item-card-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:12px}
-.item-card-name{font-size:18px;font-weight:800;color:var(--black);letter-spacing:-0.01em;line-height:1.2}
-.item-card-price{font-size:15px;font-weight:800;color:var(--teal);white-space:nowrap}
-.item-card-desc{font-size:13px;color:var(--gray-600);line-height:1.65}
-.item-card-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.item-tag{
-  font-size:9px;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;padding:4px 10px;border-radius:3px;
-}
+/* ITEM CARDS */
+.items-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.items-grid{grid-template-columns:1fr}}
+.item-card{background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.6);border-radius:4px;overflow:hidden;transition:all 0.3s ease;position:relative;z-index:1}
+.item-card:hover{background:rgba(255,255,255,0.95);border-color:var(--border-strong);box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.item-card-body{padding:20px}
+.item-card-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:12px}
+.item-card-name{font-size:16px;font-weight:800;color:var(--black);letter-spacing:-0.01em;line-height:1.2}
+.item-card-price{font-size:14px;font-weight:800;color:var(--teal);white-space:nowrap}
+.item-card-desc{font-size:12px;color:var(--gray-600);line-height:1.55;margin-bottom:10px}
+.item-card-tags{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.item-tag{font-size:8px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;border-radius:3px}
 .tag-signature{background:var(--teal-subtle);color:var(--teal)}
-.tag-customizable{background:var(--orange-subtle);color:var(--orange)}
+.tag-custom{background:var(--orange-subtle);color:var(--orange)}
 .tag-new{background:var(--gray-100);color:var(--gray-700)}
 .tag-highlight{background:var(--black);color:var(--white)}
 
-/* Note */
-.menu-note{
-  margin-top:20px;padding:16px 20px;
-  background:var(--gray-50);border-left:2px solid var(--teal);
-  display:flex;align-items:flex-start;gap:12px;
+/* MODIFIERS */
+.mod-row{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;align-items:center}
+.mod-row label{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500);min-width:50px}
+.mod-select{
+  flex:1;min-width:0;padding:7px 10px;border:1px solid var(--border-strong);border-radius:3px;
+  font-family:var(--font);font-size:11px;font-weight:600;color:var(--black);
+  background:var(--white);appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239E9E9E'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;
+  cursor:pointer;
 }
-.menu-note svg{width:16px;height:16px;flex-shrink:0;color:var(--teal);margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
-.menu-note p{font-size:12px;color:var(--gray-600);line-height:1.6;font-weight:500}
+.mod-select:focus{border-color:var(--teal);outline:none}
+.mod-notes{
+  width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:3px;
+  font-family:var(--font);font-size:11px;color:var(--black);resize:none;height:32px;
+  background:var(--white);
+}
+.mod-notes:focus{border-color:var(--teal);outline:none}
+.mod-notes::placeholder{color:var(--gray-400)}
 
-/* ===== FOOTER ===== */
+/* ADD TO CART */
+.add-cart-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.qty-control{display:flex;align-items:center;border:1px solid var(--border-strong);border-radius:3px;overflow:hidden}
+.qty-btn{width:30px;height:30px;border:none;background:var(--gray-50);font-size:14px;font-weight:700;color:var(--black);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qty-btn:hover{background:var(--gray-200)}
+.qty-val{width:32px;text-align:center;font-size:12px;font-weight:700;border:none;background:var(--white);border-left:1px solid var(--border);border-right:1px solid var(--border);line-height:30px}
+.add-cart-btn{padding:8px 18px;border:none;border-radius:3px;font-family:var(--font);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);background:var(--teal);cursor:pointer;transition:all 0.15s ease}
+.add-cart-btn:hover{background:var(--teal-bright)}
+.add-cart-btn.added{background:var(--gray-800)}
+
+/* MENU NOTE */
+.menu-note{margin-top:16px;padding:14px 18px;background:var(--white);border-left:2px solid var(--teal);display:flex;align-items:flex-start;gap:10px}
+.menu-note svg{width:16px;height:16px;flex-shrink:0;color:var(--teal);margin-top:2px;stroke:currentColor;fill:none;stroke-width:2}
+.menu-note p{font-size:11px;color:var(--gray-600);line-height:1.55;font-weight:500}
+
+/* CART DRAWER */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:2000;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:440px;max-width:100vw;background:var(--white);z-index:2001;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.15,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,0.15)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:24px 28px 20px;border-bottom:1px solid var(--border-strong);flex-shrink:0}
+.cart-title{font-size:18px;font-weight:800;color:var(--black)}
+.cart-close{width:36px;height:36px;border:1px solid var(--border);border-radius:4px;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cart-close:hover{background:var(--gray-100)}
+.cart-close svg{width:18px;height:18px;stroke:var(--black);stroke-width:2;fill:none}
+.cart-items{flex:1;overflow-y:auto;scrollbar-width:none}
+.cart-items::-webkit-scrollbar{display:none}
+.cart-empty{padding:60px 28px;text-align:center;font-size:13px;color:var(--gray-500)}
+.cart-empty-title{font-size:16px;font-weight:700;color:var(--gray-700);margin-bottom:8px}
+.cart-line{padding:16px 28px;border-bottom:1px solid var(--border)}
+.cart-line-top{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.cart-line-info{flex:1;min-width:0}
+.cart-line-name{font-size:13px;font-weight:700;color:var(--black)}
+.cart-line-mods{font-size:10px;color:var(--gray-500);line-height:1.4;margin-top:2px}
+.cart-line-notes{font-size:10px;color:var(--orange);font-style:italic;margin-top:2px}
+.cart-line-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.cart-line-qty{display:flex;align-items:center;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.cart-line-qty button{width:26px;height:26px;border:none;background:var(--gray-50);font-size:12px;font-weight:700;cursor:pointer;color:var(--black);display:flex;align-items:center;justify-content:center}
+.cart-line-qty button:hover{background:var(--gray-200)}
+.cart-line-qty span{width:28px;text-align:center;font-size:11px;font-weight:700;border-left:1px solid var(--border);border-right:1px solid var(--border);background:var(--white);line-height:26px}
+.cart-line-total{font-size:14px;font-weight:800;color:var(--teal)}
+.cart-line-remove{width:24px;height:24px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0.3;transition:opacity 0.13s}
+.cart-line-remove:hover{opacity:1}
+.cart-line-remove svg{width:14px;height:14px;stroke:var(--black);stroke-width:2;fill:none}
+
+/* CART FOOTER */
+.cart-footer{border-top:1px solid var(--border-strong);padding:20px 28px;flex-shrink:0;background:var(--gray-50)}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.cart-total-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500)}
+.cart-total-amount{font-size:22px;font-weight:900;color:var(--black)}
+.cart-payment-note{font-size:10px;color:var(--gray-600);line-height:1.55;padding:10px 12px;background:var(--white);border:1px solid var(--border);border-radius:3px;margin-bottom:14px}
+.cart-payment-note strong{color:var(--black);font-weight:700}
+.cart-form-group{margin-bottom:10px}
+.cart-form-label{display:block;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500);margin-bottom:4px}
+.cart-form-input{width:100%;padding:9px 12px;border:1px solid var(--border-strong);border-radius:3px;font-family:var(--font);font-size:12px;font-weight:500;color:var(--black);background:var(--white);outline:none}
+.cart-form-input:focus{border-color:var(--teal)}
+.cart-form-input::placeholder{color:var(--gray-400)}
+.cart-submit{width:100%;padding:13px;border:none;border-radius:3px;font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);background:var(--orange);cursor:pointer;transition:all 0.15s ease;margin-top:4px}
+.cart-submit:hover{background:#E55A1B}
+.cart-submit:disabled{background:var(--gray-400);cursor:not-allowed}
+.cart-submit.success{background:var(--teal)}
+.cart-submit.error{background:#C62828}
+
+/* FOOTER */
 .site-footer{background:var(--gray-900);padding:56px 32px 24px}
-.footer-inner{
-  max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;
-}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
 .footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .footer-brand img{width:32px;height:32px;border-radius:6px}
 .footer-brand-name{font-size:13px;font-weight:700;color:var(--white);letter-spacing:0.08em;text-transform:uppercase}
 .footer-desc{font-size:13px;color:var(--gray-500);line-height:1.7}
 .footer h4{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px}
-.footer-links{list-style:none}
-.footer-links li{margin-bottom:10px}
-.footer-links a{color:var(--gray-500);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.15s ease}
+.footer-links{list-style:none}.footer-links li{margin-bottom:10px}
+.footer-links a{color:var(--gray-500);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.15s}
 .footer-links a:hover{color:var(--white)}
-.footer-bottom{
-  max-width:1200px;margin:40px auto 0;padding-top:24px;
-  border-top:1px solid rgba(255,255,255,0.06);
-  display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--gray-600);
-}
+.footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--gray-600)}
 .footer-bottom a{color:var(--teal-bright);text-decoration:none;font-weight:600}
-@media(max-width:768px){
-  .footer-inner{grid-template-columns:1fr;gap:32px}
-  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
-}
+@media(max-width:768px){.footer-inner{grid-template-columns:1fr;gap:32px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
 
-/* ===== ADD TO CART BUTTON ===== */
-.add-cart-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
-.qty-control{display:flex;align-items:center;gap:0;border:1px solid var(--border-strong);border-radius:4px;overflow:hidden}
-.qty-btn{
-  width:32px;height:32px;border:none;background:var(--gray-50);
-  font-size:15px;font-weight:700;color:var(--black);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:background 0.13s ease;
-}
-.qty-btn:hover{background:var(--gray-200)}
-.qty-btn:active{background:var(--gray-300)}
-.qty-val{width:36px;text-align:center;font-size:13px;font-weight:700;color:var(--black);border:none;background:var(--white);border-left:1px solid var(--border);border-right:1px solid var(--border)}
-.add-cart-btn{
-  padding:8px 20px;border:none;border-radius:4px;
-  font-family:var(--font);font-size:10px;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--white);background:var(--teal);cursor:pointer;
-  transition:all 0.15s ease;
-}
-.add-cart-btn:hover{background:var(--teal-bright)}
-.add-cart-btn:active{transform:scale(0.97)}
-.add-cart-btn.added{background:var(--gray-800)}
-
-/* ===== CART ICON IN HEADER ===== */
-.cart-toggle{
-  position:relative;width:40px;height:40px;border:none;background:none;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  margin-left:8px;
-}
-.cart-toggle svg{width:22px;height:22px;stroke:var(--black);stroke-width:2;fill:none}
-.cart-badge{
-  position:absolute;top:2px;right:2px;
-  min-width:16px;height:16px;border-radius:8px;
-  background:var(--orange);color:var(--white);
-  font-size:9px;font-weight:800;
-  display:none;align-items:center;justify-content:center;
-  padding:0 4px;
-}
-.cart-badge.has-items{display:flex}
-
-/* ===== CART DRAWER ===== */
-.cart-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,0.4);
-  z-index:2000;opacity:0;pointer-events:none;
-  transition:opacity 0.3s ease;
-}
-.cart-overlay.open{opacity:1;pointer-events:auto}
-.cart-drawer{
-  position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;
-  background:var(--white);z-index:2001;
-  transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.4,0,0.15,1);
-  display:flex;flex-direction:column;
-  box-shadow:-8px 0 40px rgba(0,0,0,0.15);
-}
-.cart-drawer.open{transform:translateX(0)}
-.cart-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:24px 28px 20px;border-bottom:1px solid var(--border-strong);
-  flex-shrink:0;
-}
-.cart-title{font-size:18px;font-weight:800;color:var(--black);letter-spacing:-0.01em}
-.cart-close{
-  width:36px;height:36px;border:1px solid var(--border);border-radius:4px;
-  background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:background 0.13s ease;
-}
-.cart-close:hover{background:var(--gray-100)}
-.cart-close svg{width:18px;height:18px;stroke:var(--black);stroke-width:2;fill:none}
-.cart-items{flex:1;overflow-y:auto;padding:0;scrollbar-width:none}
-.cart-items::-webkit-scrollbar{display:none}
-.cart-empty{
-  padding:60px 28px;text-align:center;
-  font-size:13px;color:var(--gray-500);font-weight:500;
-}
-.cart-empty-title{font-size:16px;font-weight:700;color:var(--gray-700);margin-bottom:8px}
-.cart-line{
-  display:flex;align-items:center;gap:14px;
-  padding:18px 28px;border-bottom:1px solid var(--border);
-}
-.cart-line-info{flex:1;min-width:0}
-.cart-line-name{font-size:14px;font-weight:700;color:var(--black);margin-bottom:2px}
-.cart-line-price{font-size:12px;font-weight:600;color:var(--gray-500)}
-.cart-line-qty{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:3px;overflow:hidden}
-.cart-line-qty button{
-  width:28px;height:28px;border:none;background:var(--gray-50);
-  font-size:13px;font-weight:700;cursor:pointer;color:var(--black);
-  display:flex;align-items:center;justify-content:center;
-}
-.cart-line-qty button:hover{background:var(--gray-200)}
-.cart-line-qty span{
-  width:30px;text-align:center;font-size:12px;font-weight:700;
-  border-left:1px solid var(--border);border-right:1px solid var(--border);
-  background:var(--white);line-height:28px;
-}
-.cart-line-total{font-size:14px;font-weight:800;color:var(--teal);min-width:52px;text-align:right}
-.cart-line-remove{
-  width:24px;height:24px;border:none;background:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;opacity:0.3;
-  transition:opacity 0.13s ease;
-}
-.cart-line-remove:hover{opacity:1}
-.cart-line-remove svg{width:14px;height:14px;stroke:var(--black);stroke-width:2;fill:none}
-
-/* Cart Footer */
-.cart-footer{
-  border-top:1px solid var(--border-strong);padding:24px 28px;flex-shrink:0;
-  background:var(--gray-50);
-}
-.cart-total-row{
-  display:flex;justify-content:space-between;align-items:baseline;
-  margin-bottom:20px;
-}
-.cart-total-label{font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500)}
-.cart-total-amount{font-size:24px;font-weight:900;color:var(--black);letter-spacing:-0.02em}
-.cart-payment-note{
-  font-size:11px;color:var(--gray-600);line-height:1.6;
-  padding:12px 14px;background:var(--white);border:1px solid var(--border);
-  border-radius:4px;margin-bottom:20px;
-}
-.cart-payment-note strong{color:var(--black);font-weight:700}
-.cart-form-group{margin-bottom:14px}
-.cart-form-label{
-  display:block;font-size:10px;font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--gray-500);margin-bottom:6px;
-}
-.cart-form-input{
-  width:100%;padding:10px 14px;border:1px solid var(--border-strong);
-  border-radius:4px;font-family:var(--font);font-size:13px;font-weight:500;
-  color:var(--black);background:var(--white);outline:none;
-  transition:border-color 0.15s ease;
-}
-.cart-form-input:focus{border-color:var(--teal)}
-.cart-form-input::placeholder{color:var(--gray-400)}
-.cart-submit{
-  width:100%;padding:14px;border:none;border-radius:4px;
-  font-family:var(--font);font-size:12px;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--white);background:var(--orange);cursor:pointer;
-  transition:all 0.15s ease;
-}
-.cart-submit:hover{background:#E55A1B}
-.cart-submit:active{transform:scale(0.98)}
-.cart-submit:disabled{background:var(--gray-400);cursor:not-allowed}
-.cart-submit.success{background:var(--teal)}
-.cart-submit.error{background:#C62828}
-
-/* Ghost Logo - centered behind menu tiles */
-.ghost-logo{
-  position:absolute;pointer-events:none;z-index:0;
-  width:500px;height:500px;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  opacity:0.05;
-}
-.ghost-logo img{width:100%;height:100%;object-fit:contain}
-@media(max-width:768px){.ghost-logo{width:320px;height:320px}}
-
-/* Glass translucency on item cards */
-.item-card{
-  background:rgba(255,255,255,0.82);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,0.5);
-  position:relative;z-index:1;
-}
-.item-card:hover{
-  background:rgba(255,255,255,0.94);
-  border-color:var(--border-strong);
-  box-shadow:var(--shadow-lg);transform:translateY(-4px);
-}
-
-/* Animations */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
     <a href="index.html" class="header-brand">
@@ -437,296 +244,76 @@ body{
   </div>
 </header>
 
-<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-img"><img src="images/banner2.jpg" alt=""></div>
   <div class="page-hero-content">
-    <a href="index.html" class="page-hero-back">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      Home
-    </a>
+    <a href="index.html" class="page-hero-back"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg> Home</a>
     <h1>The Menu</h1>
     <div class="page-hero-line"></div>
-    <p>Professional kitchen output. Every item made from scratch. Consistent quality, every service.</p>
+    <p>Professional kitchen output. Every item made from scratch. Customize your order below.</p>
   </div>
 </section>
 
-<!-- TABS -->
 <div class="tabs-bar">
   <div class="tabs-inner">
     <button class="tab-btn active" onclick="showCat('all',this)">All Items</button>
     <button class="tab-btn" onclick="showCat('beverages',this)">Beverages</button>
-    <button class="tab-btn" onclick="showCat('breakfast',this)">Breakfast</button>
+    <button class="tab-btn" onclick="showCat('food',this)">Food</button>
     <button class="tab-btn" onclick="showCat('baked',this)">Baked Goods</button>
   </div>
 </div>
 
-<!-- MENU CONTENT -->
-<div class="menu-body" style="position:relative;overflow:hidden">
+<div class="menu-body">
   <div class="ghost-logo"><img src="images/logo.png" alt=""></div>
-  <div class="menu-body-inner">
+  <div class="menu-body-inner" id="menuContainer"></div>
+</div>
 
-    <!-- BEVERAGES -->
-    <div class="menu-cat visible" data-cat="beverages" id="beverages">
-      <div class="menu-cat-header">
-        <span class="menu-cat-title">Beverages</span>
-        <span class="menu-cat-count">4 Items / Barista Program</span>
-      </div>
-      <div class="items-grid">
-        <div class="item-card reveal" data-item="Latte" data-price="3.00">
-          <div class="item-card-img"><span class="ph">Espresso Program</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Latte</span>
-              <span class="item-card-price">$3.00</span>
-            </div>
-            <div class="item-card-desc">Double shot of espresso with whole milk and 1 oz. flavor syrup. Milk options: whole, 1%, almond, or oat. Served hot or iced. Flavors: Hazelnut, Vanilla.</div>
-            <div class="item-card-tags">
-              <span class="item-tag tag-signature">Signature</span>
-              <span class="item-tag tag-customizable">Customizable</span>
-            </div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="item-card reveal" data-item="Chai Latte" data-price="3.00">
-          <div class="item-card-img"><span class="ph">Tea Program</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Chai Latte</span>
-              <span class="item-card-price">$3.00</span>
-            </div>
-            <div class="item-card-desc">Black tea spiced with cinnamon, cardamom, and pepper. Steamed milk with vanilla syrup. Available with whole, 1%, almond, or oat milk. Hot or iced.</div>
-            <div class="item-card-tags">
-              <span class="item-tag tag-signature">Signature</span>
-            </div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="item-card reveal" data-item="Strawberry Banana Smoothie" data-price="3.00">
-          <div class="item-card-img"><span class="ph">Blended Program</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Strawberry Banana Smoothie</span>
-              <span class="item-card-price">$3.00</span>
-            </div>
-            <div class="item-card-desc">Fresh strawberries, banana, and apple juice. Spinach nutrient addition available on request. 16 oz. serving.</div>
-            <div class="item-card-tags">
-              <span class="item-tag tag-customizable">Customizable</span>
-            </div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="item-card reveal" data-item="Toasted Marshmallow Hot Cocoa" data-price="3.00">
-          <div class="item-card-img"><span class="ph">Specialty</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Toasted Marshmallow Hot Cocoa</span>
-              <span class="item-card-price">$3.00</span>
-            </div>
-            <div class="item-card-desc">Signature hot cocoa crafted by our barista team. Also available in Salted Caramel and Vanilla variations.</div>
-            <div class="item-card-tags">
-              <span class="item-tag tag-highlight">Staff Favorite</span>
-            </div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="menu-note">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <p>All espresso drinks are 16 oz. and handcrafted through our barista training program. Creamer options include Regular, Hazelnut, and Vanilla.</p>
-      </div>
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">Your Order</span>
+    <button class="cart-close" onclick="toggleCart()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-title">No items yet</div>Browse the menu and add items to your order.</div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Order Total</span>
+      <span class="cart-total-amount" id="cartTotal">$0.00</span>
     </div>
-
-    <!-- BREAKFAST -->
-    <div class="menu-cat visible" data-cat="breakfast" id="breakfast">
-      <div class="menu-cat-header">
-        <span class="menu-cat-title">Breakfast</span>
-        <span class="menu-cat-count">4 Items / Kitchen Production</span>
-      </div>
-      <div class="items-grid">
-        <div class="item-card reveal" data-item="Sausage Breakfast Burrito" data-price="5.00">
-          <div class="item-card-img"><span class="ph">Kitchen Line</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Sausage Breakfast Burrito</span>
-              <span class="item-card-price">$5.00</span>
-            </div>
-            <div class="item-card-desc">Sausage, egg, three-cheese blend with crispy hash browns. Wrapped in a warm flour tortilla.</div>
-            <div class="item-card-tags">
-              <span class="item-tag tag-signature">Signature</span>
-            </div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="item-card reveal" data-item="Chorizo Burrito" data-price="5.00">
-          <div class="item-card-img"><span class="ph">Kitchen Line</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Chorizo Burrito</span>
-              <span class="item-card-price">$5.00</span>
-            </div>
-            <div class="item-card-desc">Pork chorizo, egg, three-cheese blend with sauteed potato, bell pepper, and onion. Flour tortilla or served as a bowl.</div>
-            <div class="item-card-tags">
-              <span class="item-tag tag-new">New Addition</span>
-            </div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="item-card reveal" data-item="Parfait" data-price="4.00">
-          <div class="item-card-img"><span class="ph">Prep Station</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Parfait</span>
-              <span class="item-card-price">$4.00</span>
-            </div>
-            <div class="item-card-desc">Lemon yogurt layered with fresh seasonal fruits. Homemade crunchy granola served on the side.</div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="item-card reveal" data-item="Oatmeal" data-price="4.00">
-          <div class="item-card-img"><span class="ph">Prep Station</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Oatmeal</span>
-              <span class="item-card-price">$4.00</span>
-            </div>
-            <div class="item-card-desc">Old-fashioned oats with almond milk, strawberries, blueberries, cinnamon, and maple syrup. Topped with fresh banana, granola, and brown sugar.</div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="menu-note">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <p>Any burrito can be prepared as a bowl without the tortilla upon request.</p>
-      </div>
+    <div class="cart-payment-note">
+      <strong>Payment:</strong> Make checks payable to <strong>Scratch Cafe</strong> or provide cash to the delivery student when items are delivered.
     </div>
-
-    <!-- BAKED GOODS -->
-    <div class="menu-cat visible" data-cat="baked" id="baked">
-      <div class="menu-cat-header">
-        <span class="menu-cat-title">Baked Goods</span>
-        <span class="menu-cat-count">2 Items / Baking Station</span>
-      </div>
-      <div class="items-grid">
-        <div class="item-card reveal" data-item="Blueberry Muffin" data-price="3.00">
-          <div class="item-card-img"><span class="ph">Baking Station</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Blueberry Muffin</span>
-              <span class="item-card-price">$3.00</span>
-            </div>
-            <div class="item-card-desc">Made with real blueberries and topped with a sweet streusel crumble. Baked in-house each service day.</div>
-            <div class="item-card-tags">
-              <span class="item-tag tag-signature">Signature</span>
-            </div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-        <div class="item-card reveal" data-item="Coffee Cake" data-price="3.00">
-          <div class="item-card-img"><span class="ph">Baking Station</span></div>
-          <div class="item-card-body">
-            <div class="item-card-top">
-              <span class="item-card-name">Coffee Cake</span>
-              <span class="item-card-price">$3.00</span>
-            </div>
-            <div class="item-card-desc">Classic cake with walnut crumble topping. An ideal pairing with any of our espresso beverages.</div>
-            <div class="add-cart-row">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="adjustQty(this,-1)">-</button>
-                <span class="qty-val">1</span>
-                <button class="qty-btn" onclick="adjustQty(this,1)">+</button>
-              </div>
-              <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="cart-form-group">
+      <label class="cart-form-label">Delivery Date (Required)</label>
+      <input class="cart-form-input" type="date" id="orderDate" required>
     </div>
-
+    <div class="cart-form-group">
+      <label class="cart-form-label">Your Name (Required)</label>
+      <input class="cart-form-input" type="text" id="orderName" placeholder="e.g. Mr. Johnson">
+    </div>
+    <div class="cart-form-group">
+      <label class="cart-form-label">Room / Location (Required)</label>
+      <input class="cart-form-input" type="text" id="orderLocation" placeholder="e.g. Room 204">
+    </div>
+    <button class="cart-submit" id="cartSubmit" onclick="submitOrder()">Submit Order</button>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-brand">
-        <img src="images/logo.png" alt="Scratch Cafe">
-        <span class="footer-brand-name">Scratch Cafe</span>
-      </div>
-      <p class="footer-desc">Pioneer Valley High School's professional culinary program. Directed by Ms. Montanez. Every item made from scratch, every skill built from the ground up.</p>
+      <div class="footer-brand"><img src="images/logo.png" alt="Scratch Cafe"><span class="footer-brand-name">Scratch Cafe</span></div>
+      <p class="footer-desc">Pioneer Valley High School's professional culinary program. Directed by Ms. Montanez.</p>
     </div>
     <div>
       <h4>Navigation</h4>
       <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="menu.html">Full Menu</a></li>
-        <li><a href="#beverages">Beverages</a></li>
-        <li><a href="#breakfast">Breakfast</a></li>
-        <li><a href="#baked">Baked Goods</a></li>
+        <li><a href="index.html">Home</a></li><li><a href="menu.html">Full Menu</a></li>
+        <li><a href="support.html">Support</a></li><li><a href="#beverages">Beverages</a></li>
       </ul>
     </div>
     <div>
@@ -739,122 +326,169 @@ body{
     </div>
   </div>
   <div class="footer-bottom">
-    <span>2026 Scratch Cafe &mdash; Pioneer Valley High School</span>
+    <span>2026 Scratch Cafe — Pioneer Valley High School</span>
     <span>Built by <a href="https://creativesilva.github.io/pvhs_tools/" target="_blank">CreativeSilva</a></span>
   </div>
 </footer>
 
-<!-- CART OVERLAY & DRAWER -->
-<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <span class="cart-title">Your Order</span>
-    <button class="cart-close" onclick="toggleCart()" aria-label="Close cart">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="cart-items" id="cartItems">
-    <div class="cart-empty" id="cartEmpty">
-      <div class="cart-empty-title">No items yet</div>
-      Browse the menu and add items to your order.
-    </div>
-  </div>
-  <div class="cart-footer" id="cartFooter" style="display:none">
-    <div class="cart-total-row">
-      <span class="cart-total-label">Order Total</span>
-      <span class="cart-total-amount" id="cartTotal">$0.00</span>
-    </div>
-    <div class="cart-payment-note">
-      <strong>Payment:</strong> Make checks payable to <strong>Scratch Cafe</strong> or provide cash to the delivery student when items are delivered.
-    </div>
-    <div class="cart-form-group">
-      <label class="cart-form-label" for="orderName">Your Name (Required)</label>
-      <input class="cart-form-input" type="text" id="orderName" placeholder="e.g. Mr. Johnson" required>
-    </div>
-    <div class="cart-form-group">
-      <label class="cart-form-label" for="orderLocation">Room / Location (Required)</label>
-      <input class="cart-form-input" type="text" id="orderLocation" placeholder="e.g. Room 204, Front Office">
-    </div>
-    <button class="cart-submit" id="cartSubmit" onclick="submitOrder()">Submit Order</button>
-  </div>
-</div>
-
-<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>emailjs.init('68UkiTjqHIKZMkeCC');</script>
-
 <script>
-// ===== NAV & UI =====
+// ===== MENU DATA =====
+const MENU=[
+  // BEVERAGES
+  {cat:'beverages',name:'Latte',price:3.00,desc:'Double shot espresso with whole milk and 1 oz. syrup. 16 oz.',tags:['Signature','Customizable'],mods:[
+    {label:'Temp',key:'temp',opts:['Hot','Iced']},
+    {label:'Milk',key:'milk',opts:['Whole (default)','Low Fat','Almond (dairy-free)','Oat (dairy-free)']},
+    {label:'Syrup',key:'syrup',opts:['None','Caramel','Chocolate','Coconut','Cookie Butter','English Toffee','Gingerbread','Hazelnut','Salted Caramel','Toasted Marshmallow','Vanilla','White Chocolate','Sugar Free Vanilla','Sugar Free Coconut','Sugar Free Hazelnut','Sugar Free Salted Caramel']},
+  ]},
+  {cat:'beverages',name:'Coffee',price:1.00,desc:'12 oz. Regular or Decaf. Creamer and sugar included.',tags:['Value'],mods:[
+    {label:'Temp',key:'temp',opts:['Hot','Iced']},
+    {label:'Type',key:'type',opts:['Regular','Decaf']},
+    {label:'Creamer',key:'creamer',opts:['Regular','Hazelnut','Vanilla','None (black)']},
+  ]},
+  {cat:'beverages',name:'Vanilla Chai Latte',price:2.50,desc:'Black tea with cinnamon, cardamom, pepper. Steamed milk and vanilla syrup. 12 oz.',tags:['Signature'],mods:[
+    {label:'Temp',key:'temp',opts:['Hot','Iced']},
+    {label:'Milk',key:'milk',opts:['Whole (default)','1%','Almond (dairy-free)','Oat (dairy-free)']},
+  ]},
+  {cat:'beverages',name:'Smoothie',price:3.00,desc:'Fresh blended fruit with apple juice or milk. 16 oz.',tags:['Customizable'],mods:[
+    {label:'Fruit',key:'fruit',opts:['Strawberry Banana (default)','Banana','Blueberry','Peach','Mango','Strawberry']},
+    {label:'Base',key:'base',opts:['Apple Juice (default)','Milk','Almond Milk (dairy-free)','Oat Milk (dairy-free)']},
+    {label:'Add-on',key:'addon',opts:['None','Add Spinach']},
+  ]},
+  {cat:'beverages',name:'Toasted Marshmallow Hot Cocoa',price:3.00,desc:'Signature hot cocoa crafted by our barista team.',tags:['Staff Favorite'],mods:[
+    {label:'Flavor',key:'flavor',opts:['Toasted Marshmallow','Salted Caramel','Vanilla']},
+    {label:'Milk',key:'milk',opts:['Whole (default)','Low Fat','Almond (dairy-free)','Oat (dairy-free)']},
+  ]},
+  // FOOD
+  {cat:'food',name:'Sausage Breakfast Burrito',price:4.00,desc:'Sausage, egg, three-cheese blend with crispy hash browns. Flour tortilla.',tags:['Signature'],mods:[
+    {label:'Style',key:'style',opts:['Wrapped in Tortilla','Burrito Bowl (no tortilla)']},
+    {label:'Protein',key:'protein',opts:['Sausage (default)','No Meat (egg & cheese only)']},
+  ]},
+  {cat:'food',name:'Chorizo Breakfast Burrito',price:4.00,desc:'Pork chorizo, egg, three-cheese blend with sauteed potato, bell pepper, onion.',tags:['New'],mods:[
+    {label:'Style',key:'style',opts:['Wrapped in Tortilla','Burrito Bowl (no tortilla)']},
+    {label:'Protein',key:'protein',opts:['Chorizo (default)','No Meat (egg & cheese only)']},
+  ]},
+  {cat:'food',name:'JR Bowl',price:3.50,desc:'Sausage, egg, cheese, spinach, and bell pepper served in a bowl.',tags:['New'],mods:[
+    {label:'Protein',key:'protein',opts:['Sausage (default)','No Meat (egg & cheese only)']},
+  ]},
+  {cat:'food',name:'Lemon Yogurt Parfait',price:2.00,desc:'Lemon yogurt with fresh seasonal fruits and homemade crunchy granola.',tags:[],mods:[
+    {label:'Size',key:'size',opts:['Small 5 oz. ($2.00)','Large 8 oz. ($3.00)'],prices:[2.00,3.00]},
+  ]},
+  {cat:'food',name:'Overnight Oats',price:2.00,desc:'Oats with almond milk, strawberries, blueberries, cinnamon, maple syrup. Topped with banana, granola, brown sugar. 12 oz.',tags:[],mods:[]},
+  // BAKED
+  {cat:'baked',name:'Blueberry Streusel Muffin',price:0.50,desc:'Real blueberries with sweet streusel topping. Baked in-house daily.',tags:['Signature'],mods:[]},
+  {cat:'baked',name:'Pumpkin Bread',price:1.00,desc:'A thick slice of seasonal favorite. Perfect treat any time of the year.',tags:[],mods:[]},
+  {cat:'baked',name:'Coffee Cake',price:1.00,desc:'Classic cake with walnut crumble topping. Pairs perfectly with espresso.',tags:[],mods:[]},
+];
+
+const CAT_LABELS={beverages:{title:'Specialty Beverages',sub:'Barista Program'},food:{title:'Fresh From Scratch',sub:'Kitchen Production'},baked:{title:'Baked Goods',sub:'Baking Station'}};
+
+function buildMenu(){
+  const container=document.getElementById('menuContainer');
+  let html='';
+  ['beverages','food','baked'].forEach(cat=>{
+    const items=MENU.filter(i=>i.cat===cat);
+    const info=CAT_LABELS[cat];
+    html+=`<div class="menu-cat visible" data-cat="${cat}" id="${cat}">
+      <div class="menu-cat-header">
+        <span class="menu-cat-title">${info.title}</span>
+        <span class="menu-cat-count">${items.length} Items / ${info.sub}</span>
+      </div><div class="items-grid">`;
+    items.forEach((item,idx)=>{
+      const gIdx=MENU.indexOf(item);
+      const tagMap={Signature:'tag-signature',Customizable:'tag-custom',New:'tag-new','Staff Favorite':'tag-highlight',Value:'tag-signature'};
+      const tags=item.tags.map(t=>`<span class="item-tag ${tagMap[t]||'tag-new'}">${t}</span>`).join('');
+      let modsHtml='';
+      item.mods.forEach(m=>{
+        const opts=m.opts.map(o=>`<option value="${o}">${o}</option>`).join('');
+        modsHtml+=`<div class="mod-row"><label>${m.label}</label><select class="mod-select" data-key="${m.key}" ${m.prices?`data-prices='${JSON.stringify(m.prices)}'`:''}>${opts}</select></div>`;
+      });
+      modsHtml+=`<div class="mod-row"><label>Notes</label><input class="mod-notes" placeholder="Special requests, allergies, substitutions..." data-key="notes"></div>`;
+      html+=`<div class="item-card reveal" data-idx="${gIdx}">
+        <div class="item-card-body">
+          <div class="item-card-top">
+            <span class="item-card-name">${item.name}</span>
+            <span class="item-card-price" data-base="${item.price}">$${item.price.toFixed(2)}</span>
+          </div>
+          <div class="item-card-desc">${item.desc}</div>
+          ${tags?`<div class="item-card-tags">${tags}</div>`:''}
+          ${modsHtml}
+          <div class="add-cart-row">
+            <div class="qty-control">
+              <button class="qty-btn" onclick="adjQty(this,-1)">-</button>
+              <span class="qty-val">1</span>
+              <button class="qty-btn" onclick="adjQty(this,1)">+</button>
+            </div>
+            <button class="add-cart-btn" onclick="addToCart(this)">Add to Order</button>
+          </div>
+        </div>
+      </div>`;
+    });
+    html+=`</div>`;
+    if(cat==='beverages')html+=`<div class="menu-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><p>All espresso drinks are handcrafted by our barista training program. Dairy-free milk options available on all drinks.</p></div>`;
+    if(cat==='food')html+=`<div class="menu-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><p>Any burrito can be prepared as a bowl. Meat-free options available on all items. Use the notes field for any dietary needs.</p></div>`;
+    html+=`</div>`;
+  });
+  container.innerHTML=html;
+  // Size-based price updates
+  container.querySelectorAll('select[data-prices]').forEach(sel=>{
+    sel.addEventListener('change',function(){
+      const prices=JSON.parse(this.dataset.prices);
+      const card=this.closest('.item-card');
+      const priceEl=card.querySelector('.item-card-price');
+      priceEl.textContent='$'+prices[this.selectedIndex].toFixed(2);
+      priceEl.dataset.base=prices[this.selectedIndex];
+    });
+  });
+  // Scroll animations
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
+  container.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ===== NAV =====
 function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open')}
 window.addEventListener('scroll',()=>{document.getElementById('siteHeader').classList.toggle('scrolled',window.scrollY>20)},{passive:true});
-
 function showCat(cat,btn){
   document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.menu-cat').forEach(c=>{
-    c.classList.toggle('visible',cat==='all'||c.dataset.cat===cat);
-  });
+  document.querySelectorAll('.menu-cat').forEach(c=>c.classList.toggle('visible',cat==='all'||c.dataset.cat===cat));
 }
-
 function handleHash(){
-  const hash=window.location.hash.replace('#','');
-  const valid=['beverages','breakfast','baked'];
-  if(valid.includes(hash)){
-    document.querySelectorAll('.menu-cat').forEach(c=>c.classList.toggle('visible',c.dataset.cat===hash));
-    document.querySelectorAll('.tab-btn').forEach(t=>{
-      t.classList.remove('active');
-      if(t.textContent.toLowerCase().includes(hash.substring(0,4)))t.classList.add('active');
-    });
-    setTimeout(()=>document.getElementById(hash)?.scrollIntoView({behavior:'smooth',block:'start'}),200);
+  const h=location.hash.replace('#','');
+  const valid=['beverages','food','baked'];
+  if(valid.includes(h)){
+    document.querySelectorAll('.menu-cat').forEach(c=>c.classList.toggle('visible',c.dataset.cat===h));
+    document.querySelectorAll('.tab-btn').forEach(t=>{t.classList.remove('active');if(t.textContent.toLowerCase().includes(h.substring(0,3)))t.classList.add('active')});
+    setTimeout(()=>document.getElementById(h)?.scrollIntoView({behavior:'smooth',block:'start'}),200);
   }
 }
-if(window.location.hash)handleHash();
-window.addEventListener('hashchange',handleHash);
 
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
-
-// ===== CART SYSTEM =====
+// ===== CART =====
 let cart=JSON.parse(localStorage.getItem('scratchCafeCart')||'[]');
-
-function saveCart(){
-  localStorage.setItem('scratchCafeCart',JSON.stringify(cart));
-  updateBadge();
-  renderCart();
-}
-
-function updateBadge(){
-  const count=cart.reduce((s,i)=>s+i.qty,0);
-  const badge=document.getElementById('cartBadge');
-  badge.textContent=count;
-  badge.classList.toggle('has-items',count>0);
-}
-
-function toggleCart(){
-  document.getElementById('cartOverlay').classList.toggle('open');
-  document.getElementById('cartDrawer').classList.toggle('open');
-  document.body.style.overflow=document.getElementById('cartDrawer').classList.contains('open')?'hidden':'';
-}
-
-function adjustQty(btn,delta){
-  const valEl=btn.parentElement.querySelector('.qty-val');
-  let v=parseInt(valEl.textContent)+delta;
-  if(v<1)v=1;if(v>20)v=20;
-  valEl.textContent=v;
-}
+function saveCart(){localStorage.setItem('scratchCafeCart',JSON.stringify(cart));updateBadge();renderCart()}
+function updateBadge(){const c=cart.reduce((s,i)=>s+i.qty,0);const b=document.getElementById('cartBadge');b.textContent=c;b.classList.toggle('has-items',c>0)}
+function toggleCart(){document.getElementById('cartOverlay').classList.toggle('open');document.getElementById('cartDrawer').classList.toggle('open');document.body.style.overflow=document.getElementById('cartDrawer').classList.contains('open')?'hidden':''}
+function adjQty(btn,d){const v=btn.parentElement.querySelector('.qty-val');let n=parseInt(v.textContent)+d;if(n<1)n=1;if(n>20)n=20;v.textContent=n}
 
 function addToCart(btn){
   const card=btn.closest('.item-card');
-  const name=card.dataset.item;
-  const price=parseFloat(card.dataset.price);
+  const idx=parseInt(card.dataset.idx);
+  const item=MENU[idx];
   const qty=parseInt(card.querySelector('.qty-val').textContent);
-  const existing=cart.find(i=>i.name===name);
-  if(existing){existing.qty+=qty}else{cart.push({name,price,qty})}
+  const priceEl=card.querySelector('.item-card-price');
+  const price=parseFloat(priceEl.dataset.base);
+  // Gather mods
+  const mods={};
+  card.querySelectorAll('.mod-select').forEach(s=>{mods[s.dataset.key]=s.value});
+  const notesEl=card.querySelector('.mod-notes');
+  const notes=notesEl?notesEl.value.trim():'';
+  // Build unique key from name + mods + notes
+  const modKey=JSON.stringify(mods)+notes;
+  const existing=cart.find(c=>c.name===item.name&&JSON.stringify(c.mods)+c.notes===modKey);
+  if(existing){existing.qty+=qty}else{cart.push({name:item.name,price,qty,mods,notes})}
   saveCart();
-  btn.textContent='Added';
-  btn.classList.add('added');
+  btn.textContent='Added';btn.classList.add('added');
   setTimeout(()=>{btn.textContent='Add to Order';btn.classList.remove('added')},1200);
   card.querySelector('.qty-val').textContent='1';
 }
@@ -863,128 +497,92 @@ function renderCart(){
   const container=document.getElementById('cartItems');
   const empty=document.getElementById('cartEmpty');
   const footer=document.getElementById('cartFooter');
-  if(cart.length===0){
-    container.innerHTML='';
-    container.appendChild(empty);
-    empty.style.display='';
-    footer.style.display='none';
-    return;
-  }
-  empty.style.display='none';
-  footer.style.display='';
-  let html='';
-  let total=0;
-  cart.forEach((item,idx)=>{
-    const lineTotal=item.price*item.qty;
-    total+=lineTotal;
-    html+=`
-      <div class="cart-line">
+  if(!cart.length){container.innerHTML='';container.appendChild(empty);empty.style.display='';footer.style.display='none';return}
+  empty.style.display='none';footer.style.display='';
+  let html='',total=0;
+  cart.forEach((item,i)=>{
+    const lt=item.price*item.qty;total+=lt;
+    const modStr=Object.entries(item.mods||{}).map(([k,v])=>`${k}: ${v}`).join(' / ');
+    html+=`<div class="cart-line">
+      <div class="cart-line-top">
         <div class="cart-line-info">
           <div class="cart-line-name">${item.name}</div>
-          <div class="cart-line-price">$${item.price.toFixed(2)} each</div>
+          ${modStr?`<div class="cart-line-mods">${modStr}</div>`:''}
+          ${item.notes?`<div class="cart-line-notes">Note: ${item.notes}</div>`:''}
         </div>
-        <div class="cart-line-qty">
-          <button onclick="cartQty(${idx},-1)">-</button>
-          <span>${item.qty}</span>
-          <button onclick="cartQty(${idx},1)">+</button>
-        </div>
-        <div class="cart-line-total">$${lineTotal.toFixed(2)}</div>
-        <button class="cart-line-remove" onclick="cartRemove(${idx})" aria-label="Remove">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>`;
+        <button class="cart-line-remove" onclick="cartRm(${i})"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+      <div class="cart-line-bottom">
+        <div class="cart-line-qty"><button onclick="cartQty(${i},-1)">-</button><span>${item.qty}</span><button onclick="cartQty(${i},1)">+</button></div>
+        <div class="cart-line-total">$${lt.toFixed(2)}</div>
+      </div>
+    </div>`;
   });
   container.innerHTML=html;
   document.getElementById('cartTotal').textContent='$'+total.toFixed(2);
 }
-
-function cartQty(idx,delta){
-  cart[idx].qty+=delta;
-  if(cart[idx].qty<1)cart.splice(idx,1);
-  if(cart[idx]&&cart[idx].qty>20)cart[idx].qty=20;
-  saveCart();
-}
-
-function cartRemove(idx){cart.splice(idx,1);saveCart()}
+function cartQty(i,d){cart[i].qty+=d;if(cart[i].qty<1)cart.splice(i,1);saveCart()}
+function cartRm(i){cart.splice(i,1);saveCart()}
 
 function submitOrder(){
   const name=document.getElementById('orderName').value.trim();
-  const location=document.getElementById('orderLocation').value.trim();
+  const loc=document.getElementById('orderLocation').value.trim();
+  const date=document.getElementById('orderDate').value;
   const btn=document.getElementById('cartSubmit');
-  if(!name||!location){
-    btn.textContent='Name and location required';
-    btn.classList.add('error');
-    setTimeout(()=>{btn.textContent='Submit Order';btn.classList.remove('error')},2500);
-    return;
-  }
-  if(cart.length===0)return;
-
-  btn.disabled=true;
-  btn.textContent='Submitting...';
-
+  if(!name||!loc||!date){btn.textContent='All fields required';btn.classList.add('error');setTimeout(()=>{btn.textContent='Submit Order';btn.classList.remove('error')},2500);return}
+  if(!cart.length)return;
+  btn.disabled=true;btn.textContent='Submitting...';
   let total=0;
-  const itemLines=cart.map(i=>{
-    const lt=i.price*i.qty;total+=lt;
-    return `${i.qty}x ${i.name} @ $${i.price.toFixed(2)} = $${lt.toFixed(2)}`;
-  }).join('\n');
-
+  const lines=cart.map(item=>{
+    const lt=item.price*item.qty;total+=lt;
+    const modStr=Object.entries(item.mods||{}).filter(([k,v])=>v).map(([k,v])=>`  ${k}: ${v}`).join('\n');
+    const noteStr=item.notes?`  Special Notes: ${item.notes}`:'';
+    return `${item.qty}x ${item.name} @ $${item.price.toFixed(2)} = $${lt.toFixed(2)}\n${modStr}${noteStr?'\n'+noteStr:''}`;
+  }).join('\n\n');
+  const dateFormatted=new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   const now=new Date();
-  const dateStr=now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  const timeStr=now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
-
-  const message=`
-ORDER FROM SCRATCH CAFE
+  const msg=`ORDER FROM SCRATCH CAFE
 ========================
-Date: ${dateStr} at ${timeStr}
+Ordered: ${now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})} at ${now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}
+Deliver on: ${dateFormatted}
 
 Customer: ${name}
-Deliver to: ${location}
+Deliver to: ${loc}
 
 ITEMS ORDERED:
-${itemLines}
+${lines}
 
 ORDER TOTAL: $${total.toFixed(2)}
 ========================
-Payment: Check payable to Scratch Cafe or cash on delivery.
-  `.trim();
+Payment: Check payable to Scratch Cafe or cash on delivery.`;
 
   emailjs.send('service_4mhkbik','template_fd0suj3',{
-    name: name + ' — Scratch Cafe Order',
-    message: message,
-    rating: 'Order — $'+total.toFixed(2),
+    name:name+' — Scratch Cafe Order',message:msg,rating:'Order — $'+total.toFixed(2),
   }).then(()=>{
-    btn.textContent='Order Submitted';
-    btn.classList.add('success');
-    cart=[];
-    saveCart();
+    btn.textContent='Order Submitted';btn.classList.add('success');
+    cart=[];saveCart();
     document.getElementById('orderName').value='';
     document.getElementById('orderLocation').value='';
-    setTimeout(()=>{
-      btn.disabled=false;
-      btn.textContent='Submit Order';
-      btn.classList.remove('success');
-      toggleCart();
-    },3000);
-  }).catch((err)=>{
+    document.getElementById('orderDate').value='';
+    setTimeout(()=>{btn.disabled=false;btn.textContent='Submit Order';btn.classList.remove('success');toggleCart()},3000);
+  }).catch(err=>{
     console.error('EmailJS error:',err);
-    btn.textContent='Error — please try again';
-    btn.classList.add('error');
-    setTimeout(()=>{
-      btn.disabled=false;
-      btn.textContent='Submit Order';
-      btn.classList.remove('error');
-    },3000);
+    btn.textContent='Error — try again';btn.classList.add('error');
+    setTimeout(()=>{btn.disabled=false;btn.textContent='Submit Order';btn.classList.remove('error')},3000);
   });
 }
 
-// Init cart on load
-updateBadge();
-renderCart();
-
-// Close cart on Escape
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&document.getElementById('cartDrawer').classList.contains('open'))toggleCart();
-});
+// ===== INIT =====
+buildMenu();
+updateBadge();renderCart();
+if(location.hash)handleHash();
+window.addEventListener('hashchange',handleHash);
+// Set min delivery date to tomorrow
+const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);
+const dateInput=document.getElementById('orderDate');
+if(dateInput)dateInput.min=tomorrow.toISOString().split('T')[0];
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('cartDrawer').classList.contains('open'))toggleCart()});
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 </script>
 </body>
 </html>
