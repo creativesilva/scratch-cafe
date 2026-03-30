@@ -225,10 +225,11 @@ body{
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .menu-section-wrap{position:relative;overflow:visible}
 .parallax-logo-home{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:580px;height:580px;pointer-events:none;z-index:0;
-  opacity:0.10;
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:580px;height:580px;pointer-events:none;z-index:1;
+  opacity:0;transition:opacity 0.7s ease;
 }
+.parallax-logo-home.visible{opacity:0.22}
 .parallax-logo-home img{width:100%;height:100%;object-fit:contain}
 @media(max-width:768px){.parallax-logo-home{width:320px;height:320px}}
 .menu-grid{position:relative;z-index:2}
@@ -548,7 +549,6 @@ body{
       <p class="section-desc">Three core categories. Every item made from scratch. Professional execution, consistent quality.</p>
     </div>
     <div class="menu-section-wrap" id="menuWrap">
-    <div class="parallax-logo-home"><img src="images/logo-teal.png" alt=""></div>
     <div class="menu-grid">
       <a href="menu.html#beverages" class="menu-card reveal reveal-delay-1">
         <div class="menu-card-img">
@@ -742,6 +742,19 @@ if(badge){badge.textContent=cartCount;badge.classList.toggle('has-items',cartCou
     const el=document.getElementById('hoursNotice');
     if(el){el.textContent=h.notice;el.style.display='block';}
   }
+})();
+
+// Parallax logo — show when menu section scrolls into view
+(function(){
+  const logo=document.createElement('div');
+  logo.className='parallax-logo-home';
+  logo.innerHTML='<img src="images/logo-teal.png" alt="">';
+  document.body.appendChild(logo);
+  const section=document.getElementById('menuWrap');
+  if(!section)return;
+  new IntersectionObserver(function(entries){
+    logo.classList.toggle('visible',entries[0].isIntersecting);
+  },{threshold:0.05}).observe(section);
 })();
 </script>
 </body>
