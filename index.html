@@ -224,14 +224,6 @@ body{
 /* ===== MENU PREVIEW CARDS ===== */
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .menu-section-wrap{position:relative;overflow:visible}
-.parallax-logo-home{
-  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:580px;height:580px;pointer-events:none;z-index:1;
-  opacity:0;transition:opacity 0.7s ease;
-}
-.parallax-logo-home.visible{opacity:0.22}
-.parallax-logo-home img{width:100%;height:100%;object-fit:contain}
-@media(max-width:768px){.parallax-logo-home{width:320px;height:320px}}
 .menu-grid{position:relative;z-index:2}
 .menu-card{
   background:rgba(255,255,255,0.38);backdrop-filter:blur(28px) saturate(1.8);-webkit-backdrop-filter:blur(28px) saturate(1.8);
@@ -746,18 +738,6 @@ if(badge){badge.textContent=cartCount;badge.classList.toggle('has-items',cartCou
   }
 })();
 
-// Parallax logo — show when menu section scrolls into view
-(function(){
-  const logo=document.createElement('div');
-  logo.className='parallax-logo-home';
-  logo.innerHTML='<img src="images/logo-teal.png" alt="">';
-  document.body.appendChild(logo);
-  const section=document.getElementById('menuWrap').closest('section');
-  if(!section)return;
-  new IntersectionObserver(function(entries){
-    logo.classList.toggle('visible',entries[0].isIntersecting);
-  },{threshold:0.05}).observe(section);
-})();
 </script>
 </body>
 </html>
