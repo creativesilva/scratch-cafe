@@ -117,8 +117,8 @@ body{
   position:relative;width:100%;height:90vh;min-height:560px;max-height:800px;
   overflow:hidden;margin-top:72px;background:var(--black);
 }
-.hero-slider{display:flex;width:400%;height:100%;transition:transform 0.8s cubic-bezier(0.4,0,0.15,1)}
-.hero-slide{flex:0 0 25%;height:100%;position:relative}
+.hero-slider{display:flex;width:300%;height:100%;transition:transform 0.8s cubic-bezier(0.4,0,0.15,1)}
+.hero-slide{flex:0 0 33.333%;height:100%;position:relative}
 .hero-slide img{width:100%;height:100%;object-fit:cover;opacity:0.45}
 .hero-overlay{
   position:absolute;inset:0;
@@ -437,7 +437,7 @@ body{
       </div>
     </div>
     <div class="hero-slide">
-      <img src="images/banner2.jpg" alt="Culinary preparation">
+      <img src="images/banner3.jpg" alt="Scratch Cafe branded tumbler on desk">
       <div class="hero-overlay">
         <span class="hero-tag">Barista Training Program</span>
         <h1 class="hero-title">Craft.<br>Precision.<br>Excellence.</h1>
@@ -462,19 +462,6 @@ body{
         </div>
       </div>
     </div>
-    <div class="hero-slide">
-      <img src="images/banner3.jpg" alt="Scratch Cafe branded tumbler on desk">
-      <div class="hero-overlay">
-        <span class="hero-tag">Scratch Cafe Merchandise</span>
-        <h1 class="hero-title">The Brand<br>Behind<br>the Craft</h1>
-        <div class="hero-line"></div>
-        <p class="hero-sub">Every cup tells a story. Scratch Cafe operates as a professional brand — trained by Ms. Montanez, powered by student talent.</p>
-        <div class="hero-buttons">
-          <a href="menu.html" class="btn btn-teal">Order Now</a>
-          <a href="support.html" class="btn btn-outline-w">Support the Program</a>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="hero-arrows">
     <button class="hero-arrow" onclick="slideHero(-1)" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
@@ -484,7 +471,6 @@ body{
     <button class="hero-dot active" onclick="goToSlide(0)"></button>
     <button class="hero-dot" onclick="goToSlide(1)"></button>
     <button class="hero-dot" onclick="goToSlide(2)"></button>
-    <button class="hero-dot" onclick="goToSlide(3)"></button>
   </div>
 </section>
 
@@ -655,7 +641,7 @@ body{
 
 <!-- CTA BANNER -->
 <section class="cta-banner" style="position:relative;overflow:hidden">
-  <div class="ghost-logo ghost-logo-cta"><img src="images/logo-black.png" alt=""></div>
+  <div class="ghost-logo ghost-logo-cta"><img src="images/claws-black.png" alt=""></div>
   <div class="cta-inner reveal">
     <h2>A Program Producing<br>Industry-Ready Talent</h2>
     <p>Scratch Cafe trains the next generation of culinary and hospitality professionals through real-world kitchen operations and barista certification skills.</p>
@@ -699,9 +685,9 @@ body{
 </footer>
 
 <script>
-let currentSlide=0;const totalSlides=4;let autoTimer;
+let currentSlide=0;const totalSlides=3;let autoTimer;
 function updateSlider(){
-  document.getElementById('heroSlider').style.transform=`translateX(-${currentSlide*25}%)`;
+  document.getElementById('heroSlider').style.transform=`translateX(-${currentSlide*33.333}%)`;
   document.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
 }
 function slideHero(d){currentSlide=(currentSlide+d+totalSlides)%totalSlides;updateSlider();resetAuto()}
