@@ -95,6 +95,15 @@ body{font-family:var(--font);background:var(--white);color:var(--black);-webkit-
 .way-card h4{font-size:14px;font-weight:800;color:var(--black);margin-bottom:6px}
 .way-card p{font-size:13px;color:var(--gray-600);line-height:1.55;margin:0}
 
+.instagram-btn{
+  display:inline-flex;align-items:center;gap:10px;margin-top:20px;
+  padding:14px 28px;border-radius:6px;text-decoration:none;
+  font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--white);
+  background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+  transition:opacity 0.15s ease,transform 0.15s ease;
+}
+.instagram-btn:hover{opacity:0.88;transform:translateY(-1px)}
 .site-footer{background:var(--gray-900);padding:56px 32px 24px}
 .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
 .footer-brand{display:flex;align-items:center;gap:16px;margin-bottom:20px}
@@ -200,6 +209,14 @@ body{font-family:var(--font);background:var(--white);color:var(--black);-webkit-
       <p>We accept donations of kitchen equipment, ingredients, and supplies. Contact Ms. Montanez for current needs.</p>
     </div>
   </div>
+
+  <h2 style="margin-top:48px">Follow Us</h2>
+  <div class="line"></div>
+  <p>Stay up to date with daily specials, new menu items, and behind-the-scenes kitchen moments.</p>
+  <a href="https://www.instagram.com/PVScratchCafe" target="_blank" rel="noopener" class="instagram-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    @PVScratchCafe on Instagram
+  </a>
 </div>
 
 <footer class="site-footer">
