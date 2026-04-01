@@ -142,6 +142,18 @@ body{font-family:var(--font);background:var(--white);color:var(--black);-webkit-
 .mod-notes:focus{border-color:var(--teal);outline:none}
 .mod-notes::placeholder{color:var(--gray-400)}
 
+/* FRUIT MULTI-SELECT CHIPS */
+.fruit-chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.fruit-chip{
+  padding:5px 12px;border-radius:20px;border:1.5px solid var(--border-strong);
+  font-family:var(--font);font-size:10px;font-weight:700;letter-spacing:0.06em;
+  text-transform:uppercase;color:var(--gray-600);background:var(--white);
+  cursor:pointer;transition:all 0.15s ease;user-select:none;
+}
+.fruit-chip.selected{background:var(--teal);color:var(--white);border-color:var(--teal)}
+.fruit-chip:hover:not(.selected){border-color:var(--teal);color:var(--teal)}
+.fruit-required-msg{font-size:9px;color:#C62828;font-weight:600;display:none;margin-top:4px;letter-spacing:0.05em}
+
 /* ADD TO CART */
 .add-cart-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
 .qty-control{display:flex;align-items:center;border:1px solid var(--border-strong);border-radius:3px;overflow:hidden}
@@ -400,8 +412,8 @@ const MENU=[
     {label:'Temp',key:'temp',opts:['Hot','Iced']},
     {label:'Milk',key:'milk',opts:['Whole (default)','1%','Almond (dairy-free)','Oat (dairy-free)']},
   ]},
-  {cat:'beverages',name:'Smoothie',price:3.00,desc:'Fresh blended fruit with apple juice or milk. 16 oz.',tags:['Customizable'],mods:[
-    {label:'Fruit',key:'fruit',opts:['Strawberry Banana (default)','Banana','Blueberry','Peach','Mango','Strawberry']},
+  {cat:'beverages',name:'Smoothie',price:3.00,desc:'Fresh blended fruit with apple juice or milk. 16 oz. Mix and match your own fruit combination.',tags:['Customizable'],mods:[
+    {label:'Fruits',key:'fruit',type:'multi',opts:['Strawberry','Banana','Blueberry','Peach','Mango'],defaults:['Strawberry','Banana']},
     {label:'Base',key:'base',opts:['Apple Juice (default)','Milk','Almond Milk (dairy-free)','Oat Milk (dairy-free)']},
     {label:'Add-on',key:'addon',opts:['None','Add Spinach']},
   ]},
@@ -450,8 +462,16 @@ function buildMenu(){
       const tags=item.tags.map(t=>`<span class="item-tag ${tagMap[t]||'tag-new'}">${t}</span>`).join('');
       let modsHtml='';
       item.mods.forEach(m=>{
-        const opts=m.opts.map(o=>`<option value="${o}">${o}</option>`).join('');
-        modsHtml+=`<div class="mod-row"><label>${m.label}</label><select class="mod-select" data-key="${m.key}" ${m.prices?`data-prices='${JSON.stringify(m.prices)}'`:''}>${opts}</select></div>`;
+        if(m.type==='multi'){
+          const chips=m.opts.map(o=>{
+            const sel=(m.defaults||[]).includes(o)?'selected':'';
+            return `<button type="button" class="fruit-chip ${sel}" data-fruit="${o}" onclick="toggleFruitChip(this)">${o}</button>`;
+          }).join('');
+          modsHtml+=`<div class="mod-row" style="flex-direction:column;align-items:flex-start;gap:6px"><label>${m.label}</label><div class="fruit-chips" data-key="${m.key}">${chips}</div><div class="fruit-required-msg" id="fruitMsg_${gIdx}">Please select at least one fruit.</div></div>`;
+        } else {
+          const opts=m.opts.map(o=>`<option value="${o}">${o}</option>`).join('');
+          modsHtml+=`<div class="mod-row"><label>${m.label}</label><select class="mod-select" data-key="${m.key}" ${m.prices?`data-prices='${JSON.stringify(m.prices)}'`:''}>${opts}</select></div>`;
+        }
       });
       modsHtml+=`<div class="mod-row"><label>Notes</label><input class="mod-notes" placeholder="Special requests, allergies, substitutions..." data-key="notes"></div>`;
       const imgBg={beverages:'rgba(0,116,116,0.07)',food:'rgba(255,107,43,0.06)',baked:'rgba(120,80,40,0.06)'}[item.cat]||'rgba(0,116,116,0.05)';
@@ -536,6 +556,8 @@ function updateBadge(){const c=cart.reduce((s,i)=>s+i.qty,0);const b=document.ge
 function toggleCart(){document.getElementById('cartOverlay').classList.toggle('open');document.getElementById('cartDrawer').classList.toggle('open');document.body.style.overflow=document.getElementById('cartDrawer').classList.contains('open')?'hidden':''}
 function adjQty(btn,d){const v=btn.parentElement.querySelector('.qty-val');let n=parseInt(v.textContent)+d;if(n<1)n=1;if(n>20)n=20;v.textContent=n}
 
+function toggleFruitChip(btn){btn.classList.toggle('selected')}
+
 function addToCart(btn){
   const card=btn.closest('.item-card');
   const idx=parseInt(card.dataset.idx);
@@ -543,12 +565,24 @@ function addToCart(btn){
   const qty=parseInt(card.querySelector('.qty-val').textContent);
   const priceEl=card.querySelector('.item-card-price');
   const price=parseFloat(priceEl.dataset.base);
-  // Gather mods
+  // Gather mods — handle multi-chip and regular selects
   const mods={};
+  card.querySelectorAll('.fruit-chips').forEach(fc=>{
+    const selected=[...fc.querySelectorAll('.fruit-chip.selected')].map(c=>c.dataset.fruit);
+    if(!selected.length){
+      // show error, abort
+      const msg=card.querySelector('.fruit-required-msg');
+      if(msg)msg.style.display='block';
+      setTimeout(()=>{if(msg)msg.style.display='none'},2500);
+      return;
+    }
+    mods[fc.dataset.key]=selected.join(' + ');
+  });
+  // Abort if fruit not selected
+  if(item.mods.some(m=>m.type==='multi')&&!mods[item.mods.find(m=>m.type==='multi').key])return;
   card.querySelectorAll('.mod-select').forEach(s=>{mods[s.dataset.key]=s.value});
   const notesEl=card.querySelector('.mod-notes');
   const notes=notesEl?notesEl.value.trim():'';
-  // Build unique key from name + mods + notes
   const modKey=JSON.stringify(mods)+notes;
   const existing=cart.find(c=>c.name===item.name&&JSON.stringify(c.mods)+c.notes===modKey);
   if(existing){existing.qty+=qty}else{cart.push({name:item.name,price,qty,mods,notes})}
