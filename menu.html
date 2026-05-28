@@ -354,8 +354,8 @@ body{font-family:var(--font);background:var(--white);color:var(--black);-webkit-
       <input class="cart-form-input" type="date" id="orderDate" required>
     </div>
     <div class="cart-form-group">
-      <label class="cart-form-label">Your Name (Required)</label>
-      <input class="cart-form-input" type="text" id="orderName" placeholder="e.g. Mr. Johnson">
+      <label class="cart-form-label">Full Name (Required)</label>
+      <input class="cart-form-input" type="text" id="orderName" placeholder="e.g. Chris Silva">
     </div>
     <div class="cart-form-group">
       <label class="cart-form-label">Room / Location (Required)</label>
@@ -656,8 +656,8 @@ ORDER TOTAL: $${total.toFixed(2)}
 ========================
 Payment: Check payable to Scratch Cafe or cash on delivery.`;
 
-  emailjs.send('service_4mhkbik','template_fd0suj3',{
-    name:name+' — Scratch Cafe Order',message:msg,rating:'Order — $'+total.toFixed(2),
+  emailjs.send('service_4mhkbik','template_133wer7',{
+    name:name,location:loc,message:msg,rating:'Order — $'+total.toFixed(2),
   }).then(()=>{
     btn.textContent='Order Submitted';btn.classList.add('success');
     cart=[];saveCart();
